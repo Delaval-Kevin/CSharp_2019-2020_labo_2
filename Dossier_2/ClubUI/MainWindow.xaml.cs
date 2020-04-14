@@ -66,19 +66,16 @@ namespace ClubUI
 
                 if(ajoutPilote.NouvPilote == null)
                 {
-
-                    Console.WriteLine("-------------TEST---------------");
-                    this.Hide();
-
                     Close();
                 }
 
                 User = ajoutPilote.NouvPilote;
-               // Console.WriteLine(ajoutPilote.NouvPilote.Nom);
             }
 
-            this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
-            
+            if (User != null)
+            {
+                this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
+            }
         }
         #endregion
 
@@ -135,16 +132,17 @@ namespace ClubUI
 
                 if (ajoutPilote.NouvPilote == null)
                 {
-                    Console.WriteLine("-------------TEST---------------");
-                    Application.Current.Shutdown();
+                    Close();
                 }
 
                 User = ajoutPilote.NouvPilote;
             }
 
-
-            this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
-            this.Show();
+            if (User != null)
+            {
+                this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
+                this.Show();
+            }
         }
 
         //Bouton pour quitter
