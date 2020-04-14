@@ -7,15 +7,21 @@
 /***********************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace MyClubObject
 {
-    public class Pilote
+    public class Pilote : INotifyPropertyChanged
     {
+        #region EVENT
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
         #region VARIABLES MEMBRES
         private string      _numLicence;
         private string      _photo;
@@ -31,50 +37,99 @@ namespace MyClubObject
         public string NumLicence
         {
             get { return _numLicence; }
-            set { _numLicence = value; }
+            set 
+            {
+                if( _numLicence != value)
+                {
+                    _numLicence = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumLicence"));
+                }
+            }
         }
 
         public string Photo
         {
             get { return _photo; }
-            set { _photo = value; }
+            set 
+            {
+                if (_photo != value)
+                {
+                    _photo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Photo"));
+                }
+            }
         }
 
         public string Nom
         {
             get { return _nom; }
-            set { _nom = value; }
+            set 
+            {
+                if (_nom != value)
+                {
+                    _nom = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Nom"));
+                }
+            }
         }
 
         public string Prenom
         {
             get { return _prenom; }
-            set { _prenom = value; }
+            set
+            {
+                if (_prenom != value)
+                {
+                    _prenom = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Prenom"));
+                }
+            }
         }
 
         public DateTime DateNaissance
         {
             get { return _dateNaissance; }
-            set { _dateNaissance = value; }
+            set
+            {
+                if (_dateNaissance != value)
+                {
+                    _dateNaissance = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateNaissance"));
+                }
+            }
         }
 
         public string Adresse
         {
             get { return _adresse; }
-            set { _adresse = value; }
+            set
+            {
+                if (_adresse != value)
+                {
+                    _adresse = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Adresse"));
+                }
+            }
         }
 
         public string Localite
         {
             get { return _localite; }
-            set { _localite = value; }
+            set
+            {
+                if (_localite != value)
+                {
+                    _localite = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Localite"));
+                }
+            }
         }
         #endregion
 
 
         #region CONSTRUCTEURS
         //Constructeur par défaut
-        public Pilote() : this("PBE123456", "", "Dupond", "Jean", new DateTime(1980, 10, 02), "Rue cachee 25", "1000 Bruxelles") { }
+        public Pilote() { }
 
         //Constructeur d'initialisation partiel
         public Pilote(string numLicence, string photo, string nom, string prenom) : this(numLicence, photo, nom, prenom, new DateTime(1, 1, 1), null, null) { }

@@ -63,6 +63,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AjoutChrono.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AjoutCircuit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AjoutPilote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="APropos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,9 +87,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AjoutChrono.xaml.cs">
+      <DependentUpon>AjoutChrono.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AjoutCircuit.xaml.cs">
+      <DependentUpon>AjoutCircuit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AjoutPilote.xaml.cs">
+      <DependentUpon>AjoutPilote.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="APropos.xaml.cs">
+      <DependentUpon>APropos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -115,6 +143,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Auteur.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="CircuitParDefaut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyClubObject\MyClubObject.csproj">
+      <Project>{196845cd-cf09-4538-8f3e-668460c85a71}</Project>
+      <Name>MyClubObject</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0\build\MaterialDesignThemes.targets')" />

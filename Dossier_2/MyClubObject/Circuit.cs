@@ -7,15 +7,21 @@
 /***********************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Linq;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace MyClubObject
 {
-    public class Circuit
+    public class Circuit : INotifyPropertyChanged
     {
+        #region EVENT
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
         #region VARIABLES MEMBRES
         private string _numCircuit;
         private string _nom;
@@ -29,38 +35,73 @@ namespace MyClubObject
         public string NumCircuit
         {
             get { return _numCircuit; }
-            set { _numCircuit = value; }
+            set
+            {
+                if (_numCircuit != value)
+                {
+                    _numCircuit = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumCircuit"));
+                }
+            }
         }
 
         public string Nom
         {
             get { return _nom; }
-            set { _nom = value; }
+            set
+            {
+                if (_nom != value)
+                {
+                    _nom = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Nom"));
+                }
+            }
         }
 
         public string Photo
         {
             get { return _photo; }
-            set { _photo = value; }
+            set
+            {
+                if (_photo != value)
+                {
+                    _photo = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Photo"));
+                }
+            }
         }
 
         public string Adresse
         {
             get { return _adresse; }
-            set { _adresse = value; }
+            set
+            {
+                if (_adresse != value)
+                {
+                    _adresse = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Adresse"));
+                }
+            }
         }
 
         public string Localite
         {
             get { return _localite; }
-            set { _localite = value; }
+            set
+            {
+                if (_localite != value)
+                {
+                    _localite = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Localite"));
+                }
+            }
         }
         #endregion
 
 
         #region CONSTRUCTEURS
         //Constructeur par défaut
-        public Circuit() : this("TBE0001", null, "Dupond", "Rue de la perche 50", "6880 Bertrix") { }
+        public Circuit() { }
 
         //Constructeur d'initialisation
         public Circuit(string numCircuit, string nom, string photo, string adresse, string localite)

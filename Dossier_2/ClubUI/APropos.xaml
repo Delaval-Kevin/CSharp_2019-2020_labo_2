@@ -1,0 +1,27 @@
+﻿<Window x:Class="ClubUI.APropos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClubUI"
+        mc:Ignorable="d"
+        Title="A Propos" Height="380" Width="505.06"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Logo1.png">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="229.371,38.066,0,0" TextWrapping="Wrap" Text="A Propos" VerticalAlignment="Top" FontSize="24" FontWeight="Bold"/>
+        <Image Source="Auteur.jpg" Margin="51.321,73.964,274.689,79.672"/>
+        <TextBlock HorizontalAlignment="Left" Margin="255.675,107.065,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="125.865" Width="205.386">
+            <Run Text="Application Club Manager"/><LineBreak/><LineBreak/>
+            <Run Text="Version 1.0"/><LineBreak/><LineBreak/>
+            <Run Text="Copyright © 2020 - Delaval Kevin"/><LineBreak/><LineBreak/>
+            <Run Text="Tous droits réservé"/></TextBlock>
+        <Button x:Name="ButtonOK" Content="OK" HorizontalAlignment="Left" Margin="211.675,292,0,-9.026" VerticalAlignment="Top" Width="75" Click="ButtonOK_Click"/>
+    </Grid>
+</Window>

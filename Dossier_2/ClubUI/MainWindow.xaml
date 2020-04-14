@@ -14,7 +14,50 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <StackPanel VerticalAlignment="Top" DockPanel.Dock="Top">
+            <Menu>
+                <Image Source="logo2.png" Height="45" Width="45"/>
+                <MenuItem Header="Fichier">
+                    <MenuItem Header="Ajouter">
+                        <MenuItem x:Name="ButtonAjoutChrono" Header="Chrono" Click="ButtonAjoutChrono_Click"/>
+                        <MenuItem x:Name="ButtonAjoutPilote" Header="Pilote" Click="ButtonAjoutPilote_Click"/>
+                        <MenuItem x:Name="ButtonAjoutCircuit" Header="Circuit" Click="ButtonAjoutCircuit_Click"/>
+                    </MenuItem>
+                    <MenuItem Header="Modifier">
+                        <MenuItem x:Name="ButtonModifPilote" Header="Pilote" Click="ButtonModifPilote_Click"/>
+                        <MenuItem x:Name="ButtonModifCircuit" Header="Circuit" Click="ButtonModifCircuit_Click"/>
+                    </MenuItem>
+                    <MenuItem x:Name="ButtonDeconnecter" Header="Deconnecter" Click="ButtonDeconnecter_Click"/>
+                    <MenuItem x:Name="ButtonQuitter" Header="Quitter" Click="ButtonQuitter_Click" />
+                </MenuItem>
+                <MenuItem Header="Outils">
+                    <MenuItem x:Name="ButtonOption" Header="Option" Click="ButtonOption_Click" />
+                    <MenuItem x:Name="ButtonAPropos" Header="A propos" Click="ButtonAPropos_Click" />
+                </MenuItem>
+            </Menu>
+            <ToolBar ToolBarTray.IsLocked="True" Margin="-3,0,0,0" >
+
+            </ToolBar>
+        </StackPanel>
+        <StackPanel  VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
+            <StatusBar>
+                <StatusBarItem Height="22">
+                    <TextBlock x:Name="StatBar"/>
+                </StatusBarItem>
+            </StatusBar>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="500" MinWidth="150" Width="200"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="5"/>
+            <DockPanel Name="ListDock" Grid.Column="0">
+                <ListBox x:Name="ListeCoo">
+                </ListBox>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
 </Window>

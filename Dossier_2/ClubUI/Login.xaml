@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClubUI"
         mc:Ignorable="d"
-        Title="Login" Height="400" Width="400"
+        Title="Connexion" Height="400" Width="400"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -15,14 +15,14 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" Icon="Logo1.png" WindowStartupLocation="CenterScreen">
     <StackPanel x:Name="CurrentStack" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Image Source="C:/Users/delav/Documents/2eme annee/C#/labo-phase-3-Head-Splitter/Dossier_2/Data/logo2.png" Height="60" Width="60" Margin="0,5,0,0"/>
-        <Label Content="Connection to Club Manager" Margin="0,0,0,20" FontSize="20"/>
+        <Image Source="Logo2.png" Height="60" Width="60" Margin="0,5,0,0"/>
+        <Label Content="Connexion à Club Manager" Margin="0,0,0,20" FontSize="20"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-10,0,0">
             <Label Content="Nom :" Width="75" HorizontalAlignment="Left" Margin="-4,0,0,0"/>
-            <TextBox x:Name="BoxNom" Width="177" Margin="0,0,0,25" Text="" />
+            <TextBox x:Name="BoxNom" Width="177" Margin="0,0,0,25" Text="" MouseEnter="MouseEnter_Event" />
             <Label Content="Prenom :" Width="75" HorizontalAlignment="Left" Margin="-4,0,0,0"/>
-            <TextBox x:Name="BoxPrenom" Width="177"  Margin="0,0,0,25" Text=""/>
-            <Button Content="Submit" Width="91.668" RenderTransformOrigin="0.494,0.545" Margin="0,20,0,0"/>
+            <TextBox x:Name="BoxPrenom" Width="177"  Margin="0,0,0,25" Text="" MouseEnter="MouseEnter_Event"/>
+            <Button x:Name="ButtonValider" Content="Valider" Width="91.668" RenderTransformOrigin="0.494,0.545" Margin="0,20,0,0" Click="ButtonValider_Click"/>
         </StackPanel>
     </StackPanel>
 </Window>

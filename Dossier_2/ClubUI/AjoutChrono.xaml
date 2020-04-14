@@ -1,0 +1,36 @@
+﻿<Window x:Class="ClubUI.AjoutChrono"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClubUI"
+        mc:Ignorable="d"
+        Title="Ajout d'un chrono" Height="430" Width="420"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Logo1.png">
+    <Grid>
+        <Label Content="Ajout du chrono" HorizontalAlignment="Left" Margin="124.832,23.172,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Numéro de Licence :" HorizontalAlignment="Left" Margin="29.781,72.344,0,0" VerticalAlignment="Top"/>
+        <Label Content="Numéro du circuit :" HorizontalAlignment="Left" Margin="29.781,121.227,0,0" VerticalAlignment="Top"/>
+        <Label Content="Condition climatique :" HorizontalAlignment="Left" Margin="29.781,170.687,0,0" VerticalAlignment="Top"/>
+        <Label Content="Etat du circuit :" HorizontalAlignment="Left" Margin="29.781,221.35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.568"/>
+        <Label Content="Temps chrono :" HorizontalAlignment="Left" Margin="29.781,269.033,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="193.564,273.033,0,0" TextWrapping="Wrap" Text="'" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="226.554,273.033,0,0" TextWrapping="Wrap" Text="''" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxNumLicence" HorizontalAlignment="Left" Margin="168.564,68.344,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="ComboBoxNumCircuit" HorizontalAlignment="Left" Margin="168.564,117.227,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="ComboBoxCondClim" HorizontalAlignment="Left" Margin="168.564,166.687,0,0" VerticalAlignment="Top" Width="200"/>
+        <ComboBox x:Name="ComboBoxEtatCirc" HorizontalAlignment="Left" Margin="168.564,217.35,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="TextBoxMinutes" HorizontalAlignment="Left" Height="23" Margin="168.564,269.033,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
+        <TextBox x:Name="TextBoxSecondes" HorizontalAlignment="Left" Height="23" Margin="201.554,269.033,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
+        <TextBox x:Name="TextBoxMiliemes" HorizontalAlignment="Left" Height="23" Margin="237.534,269.033,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
+        <Button x:Name="ButtonValider" Content="Valider" HorizontalAlignment="Left" Margin="90,340,0,0" VerticalAlignment="Top" Width="85" Click="ButtonValider_Click"/>
+        <Button x:Name="ButtonAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="236.279,340,0,0" VerticalAlignment="Top" Width="85" Click="ButtonAnnuler_Click"/>
+    </Grid>
+</Window>

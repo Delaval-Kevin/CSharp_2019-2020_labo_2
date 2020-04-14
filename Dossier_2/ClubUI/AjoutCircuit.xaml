@@ -1,0 +1,33 @@
+﻿<Window x:Class="ClubUI.AjoutCircuit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClubUI"
+        mc:Ignorable="d"
+        Title="Ajout d'un circuit" Height="420" Width="800"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Logo1.png">
+    <Grid x:Name="CurentGrid">
+        <Label Content="Ajout du circuit" HorizontalAlignment="Left" Margin="320,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
+        <Label Content="Numéro du circuit :" HorizontalAlignment="Left" Margin="44,114.3,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nom :" HorizontalAlignment="Left" Margin="44,164.6,0,0" VerticalAlignment="Top"/>
+        <Label Content="Adresse :" HorizontalAlignment="Left" Margin="44,214.3,0,0" VerticalAlignment="Top"/>
+        <Label Content="Localite :" HorizontalAlignment="Left" Margin="44,263.63,0,0" VerticalAlignment="Top"/>
+        <Label Content="Photo :" HorizontalAlignment="Left" Margin="568,70,0,0" VerticalAlignment="Top"/>
+        <Image Source="{Binding Path=Photo}" Margin="509.695,96.944,122.305,126.967"/>
+        <TextBox x:Name="TextBoxNumCircuit" HorizontalAlignment="Left" Height="23" Margin="167.317,107,0,0" TextWrapping="Wrap" Text="{Binding Path=NumCircuit}" VerticalAlignment="Top" Width="220"/>
+        <TextBox x:Name="TextBoxNom" HorizontalAlignment="Left" Height="23" Margin="167.317,157.3,0,0" TextWrapping="Wrap" Text="{Binding Path=Nom}" VerticalAlignment="Top" Width="220"/>
+        <TextBox x:Name="TextBoxAdresse" HorizontalAlignment="Left" Height="23" Margin="167.317,207,0,0" TextWrapping="Wrap" Text="{Binding Path=Adresse}" VerticalAlignment="Top" Width="220"/>
+        <TextBox x:Name="TextBoxLocalite" HorizontalAlignment="Left" Height="23" Margin="167.317,256.335,0,0" TextWrapping="Wrap" Text="{Binding Path=Localite}" VerticalAlignment="Top" Width="220"/>
+        <Button x:Name="ButtonValider" Content="Valider" HorizontalAlignment="Left" Margin="281.184,335,0,0" VerticalAlignment="Top" Width="85" Click="ButtonValider_Click"/>
+        <Button x:Name="ButtonAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="427.195,335,0,0" VerticalAlignment="Top" Width="85" Click="ButtonAnnuler_Click"/>
+        <Button x:Name="ButtonPhoto" Content="Ajouter une photo" HorizontalAlignment="Left" Margin="533.695,278.185,0,0" VerticalAlignment="Top" Width="116" FontSize="10" Click="ButtonPhoto_Click"/>
+    </Grid>
+</Window>
