@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClubUI"
         mc:Ignorable="d"
-        Title="Ajout d'un chrono" Height="430" Width="420"
+        Title="Ajout d'un chrono" Height="478.333" Width="486"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -14,23 +14,26 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="Logo1.png">
-    <Grid>
-        <Label Content="Ajout du chrono" HorizontalAlignment="Left" Margin="124.832,23.172,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+    <Grid x:Name="CurentGrid">
+        <Label Content="Ajout du chrono" HorizontalAlignment="Left" Margin="158.832,23.172,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="Numéro de Licence :" HorizontalAlignment="Left" Margin="29.781,72.344,0,0" VerticalAlignment="Top"/>
         <Label Content="Numéro du circuit :" HorizontalAlignment="Left" Margin="29.781,121.227,0,0" VerticalAlignment="Top"/>
-        <Label Content="Condition climatique :" HorizontalAlignment="Left" Margin="29.781,170.687,0,0" VerticalAlignment="Top"/>
-        <Label Content="Etat du circuit :" HorizontalAlignment="Left" Margin="29.781,221.35,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.568"/>
-        <Label Content="Temps chrono :" HorizontalAlignment="Left" Margin="29.781,269.033,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="193.564,273.033,0,0" TextWrapping="Wrap" Text="'" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="226.554,273.033,0,0" TextWrapping="Wrap" Text="''" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ComboBoxNumLicence" HorizontalAlignment="Left" Margin="168.564,68.344,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox x:Name="ComboBoxNumCircuit" HorizontalAlignment="Left" Margin="168.564,117.227,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox x:Name="ComboBoxCondClim" HorizontalAlignment="Left" Margin="168.564,166.687,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox x:Name="ComboBoxEtatCirc" HorizontalAlignment="Left" Margin="168.564,217.35,0,0" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="TextBoxMinutes" HorizontalAlignment="Left" Height="23" Margin="168.564,269.033,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
-        <TextBox x:Name="TextBoxSecondes" HorizontalAlignment="Left" Height="23" Margin="201.554,269.033,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="20"/>
-        <TextBox x:Name="TextBoxMiliemes" HorizontalAlignment="Left" Height="23" Margin="237.534,269.033,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
-        <Button x:Name="ButtonValider" Content="Valider" HorizontalAlignment="Left" Margin="90,340,0,0" VerticalAlignment="Top" Width="85" Click="ButtonValider_Click"/>
-        <Button x:Name="ButtonAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="236.279,340,0,0" VerticalAlignment="Top" Width="85" Click="ButtonAnnuler_Click"/>
+        <Label Content="Date du chrono :" HorizontalAlignment="Left" Margin="29.781,167.996,0,0" VerticalAlignment="Top"/>
+        <Label Content="Condition climatique :" HorizontalAlignment="Left" Margin="29.781,217.503,0,0" VerticalAlignment="Top"/>
+        <Label Content="Etat du circuit :" HorizontalAlignment="Left" Margin="29.781,268.166,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.568"/>
+        <Label Content="Temps chrono :" HorizontalAlignment="Left" Margin="29.781,315.849,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="193.564,319.849,0,0" TextWrapping="Wrap" Text="'" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="226.554,319.849,0,0" TextWrapping="Wrap" Text="''" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ComboBoxNumLicence" HorizontalAlignment="Left" Margin="168.564,68.344,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=NumLicence}"/>
+        <ComboBox x:Name="ComboBoxNumCircuit" HorizontalAlignment="Left" Margin="168.564,117.227,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=NumCircuit}"/>
+        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="168.564,166.996,0,0" VerticalAlignment="Top" Width="275" SelectedDate="{Binding Path=DateChrono}"/>
+        <ComboBox x:Name="ComboBoxCondClim" HorizontalAlignment="Left" Margin="168.564,213.503,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=ConditionClimatique}"/>
+        <ComboBox x:Name="ComboBoxEtatCirc" HorizontalAlignment="Left" Margin="168.564,264.166,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=EtatCircuit}"/>
+        <TextBox x:Name="TextBoxMinutes" HorizontalAlignment="Left" Height="23" Margin="168.564,315.849,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" />
+        <TextBox x:Name="TextBoxSecondes" HorizontalAlignment="Left" Height="23" Margin="201.554,315.849,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" />
+        <TextBox x:Name="TextBoxMiliemes" HorizontalAlignment="Left" Height="23" Margin="237.534,315.849,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" />
+        <Button x:Name="ButtonValider" Content="Valider" HorizontalAlignment="Left" Margin="120,386.816,0,0" VerticalAlignment="Top" Width="85" Click="ButtonValider_Click"/>
+        <Button x:Name="ButtonAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="275.279,386.816,0,0" VerticalAlignment="Top" Width="85" Click="ButtonAnnuler_Click"/>
+        <Label x:Name="LabelErr" Content="" HorizontalAlignment="Left" Margin="111,353,0,0" VerticalAlignment="Top" Width="259.279" Foreground="Red"/>
     </Grid>
 </Window>

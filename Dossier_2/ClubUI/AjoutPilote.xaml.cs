@@ -17,12 +17,19 @@ namespace ClubUI
     public partial class AjoutPilote : Window
     {
         #region VARIABLES
+        private Boolean _ajoutOK;
         private Pilote _nouvPilote;
         private AppControler _controler;
         #endregion
 
 
         #region PROPRIETES
+        public Boolean AjoutOK
+        {
+            get { return _ajoutOK; }
+            set { _ajoutOK = value; }
+        }
+
         public Pilote NouvPilote
         {
             get { return _nouvPilote; }
@@ -49,8 +56,11 @@ namespace ClubUI
             NouvPilote = new Pilote
             {
                 Nom = nom,
-                Prenom = prenom
+                Prenom = prenom,
+                DateNaissance = new DateTime(2000, 1, 1)
             };
+
+            AjoutOK = false;
 
             CurrentGrid.DataContext = NouvPilote;
         }
@@ -63,18 +73,18 @@ namespace ClubUI
             if(Controler.PiloteOk(NouvPilote))
             {
                 Controler.AjoutPilote(NouvPilote);
+                AjoutOK = true;
                 this.Close();
             }
             else
             {
-
+                LabelErr.Content = "Veuillez remplir les champs correctements !";
             }
         }
 
         //Bouton pour annuler l'ajout du pilote
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            NouvPilote = null;
             this.Close();
         }
 

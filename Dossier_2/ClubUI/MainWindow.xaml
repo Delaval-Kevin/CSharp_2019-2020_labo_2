@@ -28,6 +28,7 @@
                         <MenuItem x:Name="ButtonModifPilote" Header="Pilote" Click="ButtonModifPilote_Click"/>
                         <MenuItem x:Name="ButtonModifCircuit" Header="Circuit" Click="ButtonModifCircuit_Click"/>
                     </MenuItem>
+                    <MenuItem x:Name="ButtonEnregistrer" Header="Enregistrer" Click="ButtonEnregistrer_Click"/>
                     <MenuItem x:Name="ButtonDeconnecter" Header="Deconnecter" Click="ButtonDeconnecter_Click"/>
                     <MenuItem x:Name="ButtonQuitter" Header="Quitter" Click="ButtonQuitter_Click" />
                 </MenuItem>
@@ -37,7 +38,8 @@
                 </MenuItem>
             </Menu>
             <ToolBar ToolBarTray.IsLocked="True" Margin="-3,0,0,0" >
-
+                <RadioButton x:Name="Pilote" Content="Pilote" IsChecked="True" Click="Pilote_Click"/>
+                <RadioButton x:Name="Circuit" Content="Circuit" Click="Circuit_Click"/>
             </ToolBar>
         </StackPanel>
         <StackPanel  VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
@@ -55,7 +57,7 @@
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="5"/>
             <DockPanel Name="ListDock" Grid.Column="0">
-                <ListBox x:Name="ListeCoo">
+                <ListBox x:Name="SideListe">
                 </ListBox>
             </DockPanel>
         </Grid>

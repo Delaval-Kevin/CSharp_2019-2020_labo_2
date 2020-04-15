@@ -7,12 +7,8 @@
 /***********************************************************/
 
 using System;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 
 namespace MyClubObject
 {
@@ -23,12 +19,19 @@ namespace MyClubObject
         #endregion
 
         #region VARIABLES MEMBRES
+        [XmlAttribute]
         private string      _numLicence;
+        [XmlAttribute]
         private string      _photo;
+        [XmlAttribute]
         private string      _nom;
+        [XmlAttribute]
         private string      _prenom;
+        [XmlAttribute]
         private DateTime    _dateNaissance;
+        [XmlAttribute]
         private string      _adresse;
+        [XmlAttribute]
         private string      _localite;
         #endregion
 
@@ -151,7 +154,7 @@ namespace MyClubObject
         #region METHODES
         public override string ToString()
         {
-            return "Numero de licence : " + "\nNom : " + Nom + "\nPrenom : " + Prenom + "\nDate de Naissance : " + DateNaissance + "\nAdresse : " + Adresse + "\nLocalite : " + Localite;
+            return "- N° : " + NumLicence + " Nom : " + Nom + " " + Prenom;
         }
         #endregion
     }

@@ -7,21 +7,24 @@
 /***********************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MyClubObject
 {
     public class Chronometre
     {
         #region VARIABLES MEMBRES
+        [XmlAttribute]
         private string      _numLicence;
+        [XmlAttribute]
         private string      _numCircuit;
+        [XmlAttribute]
         private DateTime    _dateChrono;
+        [XmlAttribute]
         private CondClim    _conditionClimatique;
+        [XmlAttribute]
         private EtatCirc    _etatCircuit;
+        [XmlAttribute]
         private TimeSpan    _tempsChrono;
         #endregion
 
@@ -68,7 +71,7 @@ namespace MyClubObject
 
         #region CONSTRUCTEURS
         //Constructeur par défaut
-        public Chronometre() : this("PBE123456", "TBE0001", new DateTime(1, 1, 2000), CondClim.Nuageux, EtatCirc.Humide, new TimeSpan(0, 0, 2, 56, 453)) { }
+        public Chronometre() { }
 
         //Constructeur d'initialisation
         public Chronometre(string numLicence, string numCircuit, DateTime dateChrono, CondClim conditionClimatique, EtatCirc etatCircuit, TimeSpan tempsChrono)

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ArrayOfCircuit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Circuit>
+    <NumCircuit>TFR00005</NumCircuit>
+    <Nom>MX Club La Taillette</Nom>
+    <Photo>C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\CircuitParDefaut.png</Photo>
+    <Adresse>Rue derrière 12</Adresse>
+    <Localite>622314 La Taillette</Localite>
+  </Circuit>
+</ArrayOfCircuit>

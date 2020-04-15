@@ -6,22 +6,29 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
+using System;
 using MyClubObject;
 using System.Windows;
 using Microsoft.Win32;
-
 
 namespace ClubUI
 {
     public partial class AjoutCircuit : Window
     {
         #region VARIABLES
+        private Boolean _ajoutOK;
         private Circuit _nouvCircuit;
         private AppControler _controler;
         #endregion
 
 
         #region PROPRIETES
+        public Boolean AjoutOK
+        {
+            get { return _ajoutOK; }
+            set { _ajoutOK = value; }
+        }
+
         public Circuit NouvCircuit
         {
             get { return _nouvCircuit; }
@@ -46,6 +53,7 @@ namespace ClubUI
                 Photo = "C:\\Users\\delav\\Documents\\2eme annee\\C#\\labo-phase-3-Head-Splitter\\Dossier_2\\ClubUI\\Data\\CircuitParDefaut.png"
             };
 
+            AjoutOK = false;
             CurentGrid.DataContext = NouvCircuit;
         }
         #endregion
@@ -57,18 +65,19 @@ namespace ClubUI
             if (Controler.CircuitOk(NouvCircuit))
             {
                 Controler.AjoutCircuit(NouvCircuit);
-                this.Close();
+                AjoutOK = true;
+                Close();
             }
             else
             {
-
+                LabelErr.Content = "Veuillez remplir les champs correctements !";
             }
         }
 
         //Bouton pour annuler l'ajout de circuit
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         //Bouton pour ajouter une photo

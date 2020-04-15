@@ -6,13 +6,8 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
-using System;
-using System.Text;
-using System.Linq;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Xml.Serialization;
 
 namespace MyClubObject
 {
@@ -23,10 +18,15 @@ namespace MyClubObject
         #endregion
 
         #region VARIABLES MEMBRES
+        [XmlAttribute]
         private string _numCircuit;
+        [XmlAttribute]
         private string _nom;
+        [XmlAttribute]
         private string _photo;
+        [XmlAttribute]
         private string _adresse;
+        [XmlAttribute]
         private string _localite;
         #endregion
 
@@ -118,7 +118,7 @@ namespace MyClubObject
         #region METHODES
         public override string ToString()
         {
-            return "Numero de circuit : " + NumCircuit + "\nNom : " + Nom + "\nAdresse : " + Adresse + "\nLocalite : " + Localite;
+            return "- N° : " + NumCircuit + " Nom : " + Nom;
         }
         #endregion
     }

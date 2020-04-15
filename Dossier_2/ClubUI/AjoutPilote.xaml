@@ -27,11 +27,12 @@
         <TextBox x:Name="TextBoxNumLicence" HorizontalAlignment="Left" Height="23" Margin="160.184,72.344,0,0" TextWrapping="Wrap" Text="{Binding Path=NumLicence}" VerticalAlignment="Top" Width="220"/>
         <TextBox x:Name="TextBoxNom" HorizontalAlignment="Left" Height="23" Margin="160.184,121.227,0,0" TextWrapping="Wrap" Text="{Binding Path=Nom}" VerticalAlignment="Top" Width="220"/>
         <TextBox x:Name="TextBoxPrenom" HorizontalAlignment="Left" Height="23" Margin="160.184,170.687,0,0" TextWrapping="Wrap" Text="{Binding Path=Prenom}" VerticalAlignment="Top" Width="220"/>
-        <DatePicker x:Name="PickerDate" HorizontalAlignment="Left" Margin="160.184,221.35,0,0" VerticalAlignment="Top" DisplayDate="{Binding Path=DateNaissance}" Height="22.1" Width="220" />
+        <DatePicker x:Name="PickerDate" HorizontalAlignment="Left" Margin="160.184,221.35,0,0" VerticalAlignment="Top" SelectedDate="{Binding Path=DateNaissance}" Height="22.1" Width="220" />
         <TextBox x:Name="TextBoxAdresse" HorizontalAlignment="Left" Height="23" Margin="160.184,269.033,0,0" TextWrapping="Wrap" Text="{Binding Path=Adresse}" VerticalAlignment="Top" Width="220"/>
         <TextBox x:Name="TextBoxLocalite" HorizontalAlignment="Left" Height="23" Margin="160.184,321.185,0,0" TextWrapping="Wrap" Text="{Binding Path=Localite}" VerticalAlignment="Top" Width="220"/>
         <Button x:Name="ButtonValider" Content="Valider" HorizontalAlignment="Left" Margin="281.184,391,0,0" VerticalAlignment="Top" Width="85" Click="ButtonValider_Click"/>
         <Button x:Name="ButtonAnnuler" Content="Annuler" HorizontalAlignment="Left" Margin="427.195,391,0,0" VerticalAlignment="Top" Width="85" Click="ButtonAnnuler_Click"/>
         <Button x:Name="ButtonPhoto" Content="Ajouter une photo" HorizontalAlignment="Left" Margin="533.695,302.185,0,0" VerticalAlignment="Top" Width="116" FontSize="10" Click="ButtonPhoto_Click"/>
+        <Label x:Name="LabelErr" Content="" HorizontalAlignment="Left" Margin="143.016,353.666,0,0" VerticalAlignment="Top" Width="259.279" Foreground="Red"/>
     </Grid>
 </Window>

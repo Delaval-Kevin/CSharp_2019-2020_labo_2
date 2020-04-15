@@ -6,11 +6,6 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyClubObject
 {

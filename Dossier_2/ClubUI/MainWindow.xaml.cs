@@ -6,21 +6,11 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
+
 using System;
-using System.Linq;
-using System.Text;
 using MyClubObject;
 using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Navigation;
-using System.Collections.Generic;
-using System.Windows.Media.Imaging;
+
 
 namespace ClubUI
 {
@@ -52,6 +42,16 @@ namespace ClubUI
         {
             InitializeComponent();
             Controler = new AppControler();
+            try
+            {
+                Controler.ChargementDonnees();
+            }
+            catch(Exception exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+
+            SideListe.ItemsSource = Controler.ListePilotes;
 
             Login login = new Login();
             login.ShowDialog();
@@ -64,17 +64,20 @@ namespace ClubUI
                 ajoutPilote.ShowDialog();
 
 
-                if(ajoutPilote.NouvPilote == null)
+                if(ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
+                {
+                    User = ajoutPilote.NouvPilote;
+                }
+                else
                 {
                     Close();
                 }
-
-                User = ajoutPilote.NouvPilote;
             }
 
             if (User != null)
             {
                 this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
+                StatBar.Text = "Bienvenue " + User.Nom + " " + User.Prenom;
             }
         }
         #endregion
@@ -83,8 +86,26 @@ namespace ClubUI
         //Bouton d'ajout d'un chrono
         private void ButtonAjoutChrono_Click(object sender, RoutedEventArgs e)
         {
-            AjoutChrono ajoutChrono = new AjoutChrono(Controler);
-            ajoutChrono.ShowDialog();
+            Console.WriteLine(Controler.ListeCircuits.Count);
+            if (Controler.ListeCircuits.Count > 0)
+            {
+                AjoutChrono ajoutChrono = new AjoutChrono(Controler, User);
+                ajoutChrono.ShowDialog();
+
+                if (ajoutChrono.AjoutOK)//verifie si l'ajout du pilote est OK
+                {
+                    StatBar.Text = "Chrono ajouté correctement";
+                    Controler.SauvegardeChronos();
+                }
+                else
+                {
+                    StatBar.Text = "Ajout annulé";
+                }
+            }
+            else
+            {
+                StatBar.Text = "Ajout impossible, aucun circuit enregistré";
+            }
         }
 
         //Bouton d'ajout d'un pilote
@@ -92,6 +113,16 @@ namespace ClubUI
         {
             AjoutPilote ajoutPilote = new AjoutPilote(Controler);
             ajoutPilote.ShowDialog();
+
+            if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
+            {
+                StatBar.Text = "Pilote ajouté correctement";
+                Controler.SauvegardePilotes();
+            }
+            else 
+            {
+                StatBar.Text = "Ajout annulé";
+            }
         }
 
         //Bouton d'ajout d'un circuit
@@ -99,6 +130,16 @@ namespace ClubUI
         {
             AjoutCircuit ajoutCircuit = new AjoutCircuit(Controler);
             ajoutCircuit.ShowDialog();
+
+            if (ajoutCircuit.AjoutOK)//verifie si l'ajout du pilote est OK
+            {
+                StatBar.Text = "Circuit ajouté correctement";
+                Controler.SauvegardeCircuits();
+            }
+            else
+            {
+                StatBar.Text = "Ajout annulé";
+            }
         }
 
         //Bouton de modification d'un pilote
@@ -111,6 +152,13 @@ namespace ClubUI
         private void ButtonModifCircuit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        //Bouton pour sauvegarder les données
+        private void ButtonEnregistrer_Click(object sender, RoutedEventArgs e)
+        {
+            Controler.SauvegardeDonnees();
+            StatBar.Text = "Données sauvegardées";
         }
 
         //Bouton pour ce déconnecter
@@ -130,18 +178,21 @@ namespace ClubUI
                 AjoutPilote ajoutPilote = new AjoutPilote(Controler, login.Nom, login.Prenom);
                 ajoutPilote.ShowDialog();
 
-                if (ajoutPilote.NouvPilote == null)
+                if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
+                {
+                    User = ajoutPilote.NouvPilote;
+                }
+                else
                 {
                     Close();
                 }
-
-                User = ajoutPilote.NouvPilote;
             }
 
             if (User != null)
             {
                 this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
                 this.Show();
+                StatBar.Text = "Bienvenue " + User.Nom + " " + User.Prenom;
             }
         }
 
@@ -163,7 +214,18 @@ namespace ClubUI
             APropos aPropos = new APropos();
             aPropos.ShowDialog();
         }
-        #endregion
 
+        //Bouton radio Pilote checked
+        private void Pilote_Click(object sender, RoutedEventArgs e)
+        {
+            SideListe.ItemsSource = Controler.ListePilotes;
+        }
+
+        //Bouton radio Circuit checked 
+        private void Circuit_Click(object sender, RoutedEventArgs e)
+        {
+            SideListe.ItemsSource = Controler.ListeCircuits;
+        }
+        #endregion
     }
 }

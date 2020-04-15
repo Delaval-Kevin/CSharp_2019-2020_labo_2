@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<ArrayOfPilote xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Pilote>
+    <NumLicence>PBE0000001</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Images\Sangoku_UI.jpg</Photo>
+    <Nom>Delaval</Nom>
+    <Prenom>Kevin</Prenom>
+    <DateNaissance>1987-01-29T00:00:00</DateNaissance>
+    <Adresse>Rue Francois Michoel 222B</Adresse>
+    <Localite>4845 Sart-lez-Spa</Localite>
+  </Pilote>
+  <Pilote>
+    <NumLicence>PBE0000002</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Images\Sangoku_UI.jpg</Photo>
+    <Nom>Hendrick</Nom>
+    <Prenom>Samuel</Prenom>
+    <DateNaissance>1998-06-11T00:00:00</DateNaissance>
+  </Pilote>
+  <Pilote>
+    <NumLicence>PJP0000003</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Images\Fusajiro_Yamauchi.jpg</Photo>
+    <Nom>Fusiko</Nom>
+    <Prenom>Hiroshi</Prenom>
+    <DateNaissance>1971-03-11T00:00:00</DateNaissance>
+  </Pilote>
+</ArrayOfPilote>
