@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClubUI"
         mc:Ignorable="d"
-        Title="Club Manager" Height="450" Width="800" Icon="Logo1.png" WindowStartupLocation="CenterScreen"
+        Title="Club Manager" Height="650" Width="1000" Icon="Logo1.png" WindowStartupLocation="CenterScreen"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -13,7 +13,10 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
+        FontFamily="{DynamicResource MaterialDesignFont}" MinWidth="900" MinHeight="600">
+    <Window.Resources>
+        <local:ColorToBrush x:Key="ConvertColor"/>
+    </Window.Resources>
     <DockPanel>
         <StackPanel VerticalAlignment="Top" DockPanel.Dock="Top">
             <Menu>
@@ -24,10 +27,7 @@
                         <MenuItem x:Name="ButtonAjoutPilote" Header="Pilote" Click="ButtonAjoutPilote_Click"/>
                         <MenuItem x:Name="ButtonAjoutCircuit" Header="Circuit" Click="ButtonAjoutCircuit_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Modifier">
-                        <MenuItem x:Name="ButtonModifPilote" Header="Pilote" Click="ButtonModifPilote_Click"/>
-                        <MenuItem x:Name="ButtonModifCircuit" Header="Circuit" Click="ButtonModifCircuit_Click"/>
-                    </MenuItem>
+                    <MenuItem x:Name="ButtonAdmin" Header="Mode Admin" Click="ButtonAdmin_Click"/>
                     <MenuItem x:Name="ButtonEnregistrer" Header="Enregistrer" Click="ButtonEnregistrer_Click"/>
                     <MenuItem x:Name="ButtonDeconnecter" Header="Deconnecter" Click="ButtonDeconnecter_Click"/>
                     <MenuItem x:Name="ButtonQuitter" Header="Quitter" Click="ButtonQuitter_Click" />
@@ -43,9 +43,9 @@
             </ToolBar>
         </StackPanel>
         <StackPanel  VerticalAlignment="Bottom" DockPanel.Dock="Bottom">
-            <StatusBar>
+            <StatusBar Background="{StaticResource MaterialDesignBodyLight}">
                 <StatusBarItem Height="22">
-                    <TextBlock x:Name="StatBar"/>
+                    <TextBlock x:Name="StatBar" Text="{Binding Path=MyStatBar.Message}" Foreground="{Binding Path=MyStatBar.Couleur,Converter={StaticResource ConvertColor}}"/>
                 </StatusBarItem>
             </StatusBar>
         </StackPanel>
@@ -56,10 +56,16 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="5"/>
-            <DockPanel Name="ListDock" Grid.Column="0">
-                <ListBox x:Name="SideListe">
+            <DockPanel Grid.Column="0">
+                <ListBox x:Name="SideListe" MouseDoubleClick="SideListe_MouseDoubleClick">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Affiche}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
                 </ListBox>
             </DockPanel>
+            <UserControl x:Name="PrincipalControl" Grid.Column="2"/>
         </Grid>
     </DockPanel>
 </Window>

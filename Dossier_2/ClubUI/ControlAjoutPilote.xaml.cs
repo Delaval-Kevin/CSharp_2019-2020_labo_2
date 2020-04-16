@@ -10,26 +10,27 @@ using System;
 using MyClubObject;
 using System.Windows;
 using Microsoft.Win32;
+using System.Windows.Controls;
 
 
 namespace ClubUI
 {
-    public partial class AjoutPilote : Window
+
+    public partial class ControlAjoutPilote : UserControl
     {
+        #region EVENEMENTS
+        public event Action<Pilote> OnPiloteApply;
+        public event Action OnControlClose;
+        #endregion
+
+
         #region VARIABLES
-        private Boolean _ajoutOK;
         private Pilote _nouvPilote;
         private AppControler _controler;
         #endregion
 
 
         #region PROPRIETES
-        public Boolean AjoutOK
-        {
-            get { return _ajoutOK; }
-            set { _ajoutOK = value; }
-        }
-
         public Pilote NouvPilote
         {
             get { return _nouvPilote; }
@@ -46,10 +47,10 @@ namespace ClubUI
 
         #region CONSTRUCTEURS
         //Constructeur par défaut
-        public AjoutPilote(AppControler controler) : this(controler, null, null) { }
+        public ControlAjoutPilote(AppControler controler) : this(controler, null, null) { }
 
         //Constructeur d'initialisation
-        public AjoutPilote(AppControler controler, string nom, string prenom)
+        public ControlAjoutPilote(AppControler controler, string nom, string prenom)
         {
             InitializeComponent();
             Controler = controler;
@@ -60,9 +61,7 @@ namespace ClubUI
                 DateNaissance = new DateTime(2000, 1, 1)
             };
 
-            AjoutOK = false;
-
-            CurrentGrid.DataContext = NouvPilote;
+            CurentGrid.DataContext = NouvPilote;
         }
         #endregion
 
@@ -70,11 +69,11 @@ namespace ClubUI
         //Bouton pour valider l'ajout du pilote
         private void ButtonValider_Click(object sender, RoutedEventArgs e)
         {
-            if(Controler.PiloteOk(NouvPilote))
+            if (Controler.PiloteOk(NouvPilote))
             {
-               // Controler.AjoutPilote(NouvPilote);
-                AjoutOK = true;
-                this.Close();
+                Controler.MyStatBar.SetMessage("Pilote ajouté correctement");
+                OnPiloteApply?.Invoke(NouvPilote);
+                OnControlClose?.Invoke();
             }
             else
             {
@@ -85,7 +84,8 @@ namespace ClubUI
         //Bouton pour annuler l'ajout du pilote
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Controler.MyStatBar.SetWarning("Ajout du pilote annulé");
+            OnControlClose?.Invoke();
         }
 
         //Bouton pour ajouter une photo
@@ -103,5 +103,6 @@ namespace ClubUI
             }
         }
         #endregion
+
     }
 }

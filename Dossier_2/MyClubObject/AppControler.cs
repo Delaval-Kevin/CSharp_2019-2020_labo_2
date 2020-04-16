@@ -27,6 +27,7 @@ namespace MyClubObject
         private readonly string _pilotesFileName = @"C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\listePilotes.xml";
         private readonly string _circuitsFileName = @"C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\listeCircuits.xml";
         private readonly string _chronosFileName = @"C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\listeChronos.xml";
+        private MyStatusBar _myStatBar;
         #endregion
 
 
@@ -63,6 +64,12 @@ namespace MyClubObject
         {
             get { return _chronosFileName; }
         }
+
+        public MyStatusBar MyStatBar
+        {
+            get { return _myStatBar; }
+            set { _myStatBar = value; }
+        }
         #endregion
 
 
@@ -72,6 +79,7 @@ namespace MyClubObject
             ListePilotes = new ObservableCollection<Pilote>();
             ListeCircuits = new ObservableCollection<Circuit>();
             ListeChronos = new ObservableCollection<Chronometre>();
+            MyStatBar = new MyStatusBar();
         }
         #endregion
 
@@ -225,6 +233,7 @@ namespace MyClubObject
             public void AjoutPilote(Pilote pilote)
             {
                 ListePilotes.Add(pilote);
+                SauvegardePilotes();
             }
 
             //Fonction qui permet d'ajouter un circuit à la liste

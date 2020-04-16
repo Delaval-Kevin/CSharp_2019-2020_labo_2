@@ -6,14 +6,31 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
-using System;
 using MyClubObject;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace ClubUI
 {
-    public partial class AjoutChrono : Window
+    public partial class ControlAjoutChrono : UserControl
     {
+        #region EVENEMENTS
+        public event Action<Chronometre> OnChronoApply;
+        public event Action OnControlClose;
+        #endregion
+
         #region VARIABLES
         private Boolean _ajoutOK;
         private Chronometre _nouvChrono;
@@ -41,9 +58,8 @@ namespace ClubUI
         }
         #endregion
 
-
         #region CONSTRUCTEURS
-        public AjoutChrono(AppControler controler, Pilote user)
+        public ControlAjoutChrono(AppControler controler, Pilote user)
         {
             InitializeComponent();
 
@@ -79,9 +95,9 @@ namespace ClubUI
 
                 if (Controler.ChronoOk(NouvChrono))
                 {
-                    Controler.AjoutChrono(NouvChrono);
-                    AjoutOK = true;
-                    this.Close();
+                    Controler.MyStatBar.SetMessage("Chrono ajouté correctement");
+                    OnChronoApply?.Invoke(NouvChrono);
+                    OnControlClose?.Invoke();
                 }
                 else
                 {
@@ -98,7 +114,8 @@ namespace ClubUI
         //Bouton pour annuler l'ajout du chrono
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Controler.MyStatBar.SetWarning("Ajout du circuit annulé");
+            OnControlClose?.Invoke();
         }
         #endregion
 

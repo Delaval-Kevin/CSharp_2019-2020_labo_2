@@ -6,29 +6,38 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
-using System;
-using MyClubObject;
-using System.Windows;
 using Microsoft.Win32;
+using MyClubObject;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace ClubUI
 {
-    public partial class AjoutCircuit : Window
+    public partial class ControlAjoutCircuit : UserControl
     {
+        #region EVENEMENTS
+        public event Action<Circuit> OnCircuitApply;
+        public event Action OnControlClose;
+        #endregion
+
         #region VARIABLES
-        private Boolean _ajoutOK;
         private Circuit _nouvCircuit;
         private AppControler _controler;
         #endregion
 
-
         #region PROPRIETES
-        public Boolean AjoutOK
-        {
-            get { return _ajoutOK; }
-            set { _ajoutOK = value; }
-        }
-
         public Circuit NouvCircuit
         {
             get { return _nouvCircuit; }
@@ -42,9 +51,8 @@ namespace ClubUI
         }
         #endregion
 
-
         #region CONSTRUCTEURS
-        public AjoutCircuit(AppControler controler)
+        public ControlAjoutCircuit(AppControler controler)
         {
             InitializeComponent();
             Controler = controler;
@@ -53,7 +61,6 @@ namespace ClubUI
                 Photo = "C:\\Users\\delav\\Documents\\2eme annee\\C#\\labo-phase-3-Head-Splitter\\Dossier_2\\ClubUI\\Data\\CircuitParDefaut.png"
             };
 
-            AjoutOK = false;
             CurentGrid.DataContext = NouvCircuit;
         }
         #endregion
@@ -64,9 +71,9 @@ namespace ClubUI
         {
             if (Controler.CircuitOk(NouvCircuit))
             {
-                Controler.AjoutCircuit(NouvCircuit);
-                AjoutOK = true;
-                Close();
+                Controler.MyStatBar.SetMessage("Circuit ajouté correctement");
+                OnCircuitApply?.Invoke(NouvCircuit);
+                OnControlClose?.Invoke();
             }
             else
             {
@@ -77,7 +84,8 @@ namespace ClubUI
         //Bouton pour annuler l'ajout de circuit
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Controler.MyStatBar.SetWarning("Ajout du circuit annulé");
+            OnControlClose?.Invoke();
         }
 
         //Bouton pour ajouter une photo
@@ -95,6 +103,5 @@ namespace ClubUI
             }
         }
         #endregion
-
     }
 }

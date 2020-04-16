@@ -46,6 +46,7 @@ namespace MyClubObject
                 {
                     _numLicence = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumLicence"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Affiche"));
                 }
             }
         }
@@ -72,6 +73,7 @@ namespace MyClubObject
                 {
                     _nom = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Nom"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Affiche"));
                 }
             }
         }
@@ -85,6 +87,7 @@ namespace MyClubObject
                 {
                     _prenom = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Prenom"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Affiche"));
                 }
             }
         }
@@ -126,6 +129,11 @@ namespace MyClubObject
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Localite"));
                 }
             }
+        }
+
+        public string Affiche
+        {
+            get { return this.ToString(); }
         }
         #endregion
 

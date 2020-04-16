@@ -23,4 +23,13 @@
     <Prenom>Hiroshi</Prenom>
     <DateNaissance>1971-03-11T00:00:00</DateNaissance>
   </Pilote>
+  <Pilote>
+    <NumLicence>PFR0000004</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Images\Sangoku_UI.jpg</Photo>
+    <Nom>Dugenou</Nom>
+    <Prenom>Jean</Prenom>
+    <DateNaissance>1985-07-16T00:00:00</DateNaissance>
+    <Adresse>La rue derrière 12</Adresse>
+    <Localite>682541 Coin Perdu</Localite>
+  </Pilote>
 </ArrayOfPilote>

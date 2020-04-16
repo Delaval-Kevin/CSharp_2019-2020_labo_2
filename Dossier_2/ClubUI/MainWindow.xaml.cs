@@ -51,6 +51,7 @@ namespace ClubUI
                 Console.WriteLine(exc.Message);
             }
 
+            this.DataContext = Controler;
             SideListe.ItemsSource = Controler.ListePilotes;
 
             Login login = new Login();
@@ -77,7 +78,7 @@ namespace ClubUI
             if (User != null)
             {
                 this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
-                StatBar.Text = "Bienvenue " + User.Nom + " " + User.Prenom;
+                Controler.MyStatBar.SetMessage("Bienvenue " + User.Nom + " " + User.Prenom);
             }
         }
         #endregion
@@ -86,79 +87,72 @@ namespace ClubUI
         //Bouton d'ajout d'un chrono
         private void ButtonAjoutChrono_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(Controler.ListeCircuits.Count);
-            if (Controler.ListeCircuits.Count > 0)
+            try
             {
-                AjoutChrono ajoutChrono = new AjoutChrono(Controler, User);
-                ajoutChrono.ShowDialog();
-
-                if (ajoutChrono.AjoutOK)//verifie si l'ajout du pilote est OK
+                if (Controler.ListeCircuits.Count > 0)
                 {
-                    StatBar.Text = "Chrono ajouté correctement";
-                    Controler.SauvegardeChronos();
+                    ControlAjoutChrono controlAjoutChrono = new ControlAjoutChrono(Controler, User);
+                    controlAjoutChrono.OnChronoApply += Controler.AjoutChrono;
+                    controlAjoutChrono.OnControlClose += Fenetre_OnControlClose;
+                    PrincipalControl.Content = controlAjoutChrono;
                 }
                 else
                 {
-                    StatBar.Text = "Ajout annulé";
+                    Controler.MyStatBar.SetError("Ajout impossible, aucun circuit enregistré");
                 }
             }
-            else
+            catch(Exception)
             {
-                StatBar.Text = "Ajout impossible, aucun circuit enregistré";
+                Controler.MyStatBar.SetWarning("Terminer votre modification avant de faire un ajout !");
             }
+
         }
 
         //Bouton d'ajout d'un pilote
         private void ButtonAjoutPilote_Click(object sender, RoutedEventArgs e)
         {
-            AjoutPilote ajoutPilote = new AjoutPilote(Controler);
-            ajoutPilote.ShowDialog();
-
-            if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
+            try
             {
-                StatBar.Text = "Pilote ajouté correctement";
-                Controler.SauvegardePilotes();
+                ControlAjoutPilote controlAjoutPilote = new ControlAjoutPilote(Controler);
+                controlAjoutPilote.OnPiloteApply += Controler.AjoutPilote;
+                controlAjoutPilote.OnControlClose += Fenetre_OnControlClose;
+                PrincipalControl.Content = controlAjoutPilote;
             }
-            else 
+            catch (Exception)
             {
-                StatBar.Text = "Ajout annulé";
+                Controler.MyStatBar.SetWarning("Terminer votre modification avant de faire un ajout !");
             }
         }
 
         //Bouton d'ajout d'un circuit
         private void ButtonAjoutCircuit_Click(object sender, RoutedEventArgs e)
         {
-            AjoutCircuit ajoutCircuit = new AjoutCircuit(Controler);
-            ajoutCircuit.ShowDialog();
-
-            if (ajoutCircuit.AjoutOK)//verifie si l'ajout du pilote est OK
+            try
             {
-                StatBar.Text = "Circuit ajouté correctement";
-                Controler.SauvegardeCircuits();
+                ControlAjoutCircuit controlAjoutCircuit = new ControlAjoutCircuit(Controler);
+                controlAjoutCircuit.OnCircuitApply += Controler.AjoutCircuit;
+                controlAjoutCircuit.OnControlClose += Fenetre_OnControlClose;
+                PrincipalControl.Content = controlAjoutCircuit;
             }
-            else
+            catch (Exception)
             {
-                StatBar.Text = "Ajout annulé";
+                Controler.MyStatBar.SetWarning("Terminer votre modification avant de faire un ajout !");
             }
         }
 
-        //Bouton de modification d'un pilote
-        private void ButtonModifPilote_Click(object sender, RoutedEventArgs e)
+        //Bouton du mode admin
+        private void ButtonAdmin_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        //Bouton de modification d'un circuit
-        private void ButtonModifCircuit_Click(object sender, RoutedEventArgs e)
-        {
-
+            ControlAdmin admin = new ControlAdmin(Controler);
+            PrincipalControl.Content = admin;
+            Controler.MyStatBar.SetError("ATTENTION vous êtes en mot ADMINISTRATEUR");
         }
 
         //Bouton pour sauvegarder les données
         private void ButtonEnregistrer_Click(object sender, RoutedEventArgs e)
         {
             Controler.SauvegardeDonnees();
-            StatBar.Text = "Données sauvegardées";
+            Controler.MyStatBar.SetMessage("Données sauvegardées");
         }
 
         //Bouton pour ce déconnecter
@@ -192,7 +186,7 @@ namespace ClubUI
             {
                 this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
                 this.Show();
-                StatBar.Text = "Bienvenue " + User.Nom + " " + User.Prenom;
+                Controler.MyStatBar.SetMessage("Bienvenue " + User.Nom + " " + User.Prenom);
             }
         }
 
@@ -226,6 +220,30 @@ namespace ClubUI
         {
             SideListe.ItemsSource = Controler.ListeCircuits;
         }
+
+        //Double-click sur un élement de la liste
+        private void SideListe_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(SideListe.SelectedItem is Pilote pilote)
+            {
+                ControlAffichePilote affichePilote = new ControlAffichePilote(Controler, pilote);
+                PrincipalControl.Content = affichePilote;
+            }
+            else if(SideListe.SelectedItem is Circuit circuit)
+            {
+                ControlAfficheCircuit afficheCircuit = new ControlAfficheCircuit(Controler, circuit);
+                PrincipalControl.Content = afficheCircuit;
+            }
+        }
         #endregion
+
+        #region METHODES
+        //Vide la grid principale
+        private void Fenetre_OnControlClose()
+        {
+            PrincipalControl.Content = null;
+        }
+        #endregion
+
     }
 }

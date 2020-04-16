@@ -19,9 +19,9 @@
         <Image Source="Auteur.jpg" Margin="51.321,73.964,274.689,79.672"/>
         <TextBlock HorizontalAlignment="Left" Margin="255.675,107.065,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="125.865" Width="205.386">
             <Run Text="Application Club Manager"/><LineBreak/><LineBreak/>
-            <Run Text="Version 1.0"/><LineBreak/><LineBreak/>
+            <Run Text="Version 1.2"/><LineBreak/><LineBreak/>
             <Run Text="Copyright © 2020 - Delaval Kevin"/><LineBreak/><LineBreak/>
-            <Run Text="Tous droits réservé"/></TextBlock>
+            <Run Text="Tous droits réservés"/></TextBlock>
         <Button x:Name="ButtonOK" Content="OK" HorizontalAlignment="Left" Margin="211.675,292,0,-9.026" VerticalAlignment="Top" Width="75" Click="ButtonOK_Click"/>
     </Grid>
 </Window>

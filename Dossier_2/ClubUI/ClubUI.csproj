@@ -63,19 +63,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AjoutChrono.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AjoutCircuit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="AjoutPilote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="APropos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlAfficheCircuit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlAffichePilote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlAjoutChrono.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlAjoutCircuit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ControlAjoutPilote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,12 +103,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AjoutChrono.xaml.cs">
-      <DependentUpon>AjoutChrono.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AjoutCircuit.xaml.cs">
-      <DependentUpon>AjoutCircuit.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AjoutPilote.xaml.cs">
       <DependentUpon>AjoutPilote.xaml</DependentUpon>
     </Compile>
@@ -102,6 +112,25 @@
     </Compile>
     <Compile Include="APropos.xaml.cs">
       <DependentUpon>APropos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorToBrush.cs" />
+    <Compile Include="ControlAdmin.xaml.cs">
+      <DependentUpon>ControlAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAfficheCircuit.xaml.cs">
+      <DependentUpon>ControlAfficheCircuit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAffichePilote.xaml.cs">
+      <DependentUpon>ControlAffichePilote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAjoutChrono.xaml.cs">
+      <DependentUpon>ControlAjoutChrono.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAjoutCircuit.xaml.cs">
+      <DependentUpon>ControlAjoutCircuit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ControlAjoutPilote.xaml.cs">
+      <DependentUpon>ControlAjoutPilote.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
