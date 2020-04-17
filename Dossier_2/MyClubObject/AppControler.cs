@@ -226,11 +226,76 @@ namespace MyClubObject
                 }
                 return false;
             }
+
+            //Fonction qui vérifie l'intégrité des listes après le mode admin
+            public void VerifListes()
+            {
+                VerifListePilotes();
+                VerifListeCircuits();
+                VerifListeChronos();
+            }
+
+            //Fonction qui vérifie l'intégrité de la liste des pilotes
+            public void VerifListePilotes()
+            {
+                int count = ListePilotes.Count;
+                int i = 0;
+                while (i < count)
+                {
+                    if(!PiloteOk(ListePilotes[i]))
+                    {
+                        ListePilotes.Remove(ListePilotes[i]);
+                        count = ListePilotes.Count;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
+
+            //Fonction qui vérifie l'intégrité de la liste des circuits
+            public void VerifListeCircuits()
+            {
+                int count = ListeCircuits.Count;
+                int i = 0;
+                while (i < count)
+                {
+                    if (!CircuitOk(ListeCircuits[i]))
+                    {
+                        ListeCircuits.Remove(ListeCircuits[i]);
+                        count = ListeCircuits.Count;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
+
+            //Fonction qui vérifie l'intégrité de la liste des chronos
+            public void VerifListeChronos()
+            {
+                int count = ListeChronos.Count;
+                int i = 0;
+                while (i < count)
+                {
+                    if (!ChronoOk(ListeChronos[i]) || RecherchePilote(ListeChronos[i].NumLicence) == null || RechercheCircuit(ListeChronos[i].NumCircuit) == null)
+                    {
+                        ListeChronos.Remove(ListeChronos[i]);
+                        count = ListeChronos.Count;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+            }
             #endregion
 
-            #region AJOUT
-            //Fonction qui permet d'ajouter un pilote à la liste
-            public void AjoutPilote(Pilote pilote)
+        #region AJOUT
+        //Fonction qui permet d'ajouter un pilote à la liste
+        public void AjoutPilote(Pilote pilote)
             {
                 ListePilotes.Add(pilote);
                 SauvegardePilotes();

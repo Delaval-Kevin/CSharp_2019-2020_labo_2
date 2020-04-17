@@ -6,6 +6,7 @@
 /*Date de la dernière mise à jour : 13/04/2020             */
 /***********************************************************/
 
+using System;
 using MyClubObject;
 using System.Windows.Controls;
 
@@ -14,6 +15,10 @@ namespace ClubUI
 {
     public partial class ControlAdmin : UserControl
     {
+        #region EVENEMENTS
+        public event Action OnControlClose;
+        #endregion
+
         #region VARIABLES
         private AppControler _controler;
         #endregion
@@ -37,7 +42,13 @@ namespace ClubUI
         #endregion
 
         #region BOUTONS
-
+        //Bouton pour quitter le mode administrateur 
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Controler.MyStatBar.SetWarning("Mode administrateur fermé");
+            Controler.VerifListes();
+            OnControlClose?.Invoke();
+        }
         #endregion
 
     }

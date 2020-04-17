@@ -21,6 +21,7 @@
         <TextBlock Text="Adresse :" HorizontalAlignment="Left" Margin="29.781,488.033,0,-51.722" VerticalAlignment="Top"/>
         <TextBlock Text="Localite :" HorizontalAlignment="Left" Margin="29.781,540.185,0,-103.874" VerticalAlignment="Top"/>
         <TextBlock Text="Photo :" HorizontalAlignment="Left" Margin="29.781,72.344,0,0" VerticalAlignment="Top"/>
+        <TextBlock Text="Temps chronos :" HorizontalAlignment="Left" Margin="431.781,72.344,0,0" VerticalAlignment="Top"/>
         <Image Source="{Binding Path=Photo}"  Margin="150.945,75.488,0,0" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
         <TextBlock x:Name="TextBlockNumLicence" HorizontalAlignment="Left"  Margin="160.184,291.944,0,0" TextWrapping="Wrap" Text="{Binding Path=NumLicence}" VerticalAlignment="Top" Width="220"/>
         <TextBlock x:Name="TextBlockNom" HorizontalAlignment="Left"  Margin="160.184,340.227,0,0" TextWrapping="Wrap" Text="{Binding Path=Nom}" VerticalAlignment="Top" Width="220"/>
@@ -28,5 +29,14 @@
         <TextBlock x:Name="TextBlockDateNaiss" HorizontalAlignment="Left"   Margin="160.184,440.35,0,0" Text="{Binding Path=DateNaissance}" VerticalAlignment="Top" Width="220" />
         <TextBlock x:Name="TextBlockAdresse" HorizontalAlignment="Left"  Margin="160.184,488.033,0,0" TextWrapping="Wrap" Text="{Binding Path=Adresse}" VerticalAlignment="Top" Width="220"/>
         <TextBlock x:Name="TextBlockLocalite" HorizontalAlignment="Left"  Margin="160.184,540.185,0,-103.274" TextWrapping="Wrap" Text="{Binding Path=Localite}" VerticalAlignment="Top" Width="220"/>
+        <DataGrid x:Name="ChronoGrid" IsReadOnly="True" HorizontalAlignment="Left" Margin="431.781,108,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="Date" Binding="{Binding Path=DateChrono}" />
+                <DataGridTextColumn IsReadOnly="True" Header="N° circuit" Binding="{Binding Path=NumCircuit}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Condition climatique" Binding="{Binding Path=ConditionClimatique}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Etat du circuit" Binding="{Binding Path=EtatCircuit}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Temps chrono" Binding="{Binding Path=TempsChrono}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

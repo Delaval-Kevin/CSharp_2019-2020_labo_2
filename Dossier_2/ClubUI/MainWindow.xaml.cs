@@ -10,7 +10,7 @@
 using System;
 using MyClubObject;
 using System.Windows;
-
+using System.Windows.Media;
 
 namespace ClubUI
 {
@@ -19,6 +19,7 @@ namespace ClubUI
         #region VARIABLES
         private AppControler _controler;
         private Pilote       _user;
+        ControlAdmin         _admin;
         #endregion
 
 
@@ -33,6 +34,24 @@ namespace ClubUI
         {
             get { return _user; }
             set { _user = value; }
+        }
+
+        public ControlAdmin Admin
+        {
+            get { return _admin; }
+            set { _admin = value; }
+        }
+
+        public Boolean AdminIsClose
+        {
+            get 
+            { 
+                if(Admin == null)
+                {
+                    return true;
+                }
+               return false;
+            }
         }
         #endregion
 
@@ -87,7 +106,7 @@ namespace ClubUI
         //Bouton d'ajout d'un chrono
         private void ButtonAjoutChrono_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (AdminIsClose)
             {
                 if (Controler.ListeCircuits.Count > 0)
                 {
@@ -95,15 +114,16 @@ namespace ClubUI
                     controlAjoutChrono.OnChronoApply += Controler.AjoutChrono;
                     controlAjoutChrono.OnControlClose += Fenetre_OnControlClose;
                     PrincipalControl.Content = controlAjoutChrono;
+                    Controler.MyStatBar.SetMessage("Vous allez ajouter un chrono");
                 }
                 else
                 {
                     Controler.MyStatBar.SetError("Ajout impossible, aucun circuit enregistré");
                 }
             }
-            catch(Exception)
+            else
             {
-                Controler.MyStatBar.SetWarning("Terminer votre modification avant de faire un ajout !");
+                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
             }
 
         }
@@ -111,41 +131,47 @@ namespace ClubUI
         //Bouton d'ajout d'un pilote
         private void ButtonAjoutPilote_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (AdminIsClose)
             {
                 ControlAjoutPilote controlAjoutPilote = new ControlAjoutPilote(Controler);
                 controlAjoutPilote.OnPiloteApply += Controler.AjoutPilote;
                 controlAjoutPilote.OnControlClose += Fenetre_OnControlClose;
                 PrincipalControl.Content = controlAjoutPilote;
+                Controler.MyStatBar.SetMessage("Vous allez ajouter un pilote");
             }
-            catch (Exception)
+            else
             {
-                Controler.MyStatBar.SetWarning("Terminer votre modification avant de faire un ajout !");
+                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
             }
         }
 
         //Bouton d'ajout d'un circuit
         private void ButtonAjoutCircuit_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (AdminIsClose)
             {
                 ControlAjoutCircuit controlAjoutCircuit = new ControlAjoutCircuit(Controler);
                 controlAjoutCircuit.OnCircuitApply += Controler.AjoutCircuit;
                 controlAjoutCircuit.OnControlClose += Fenetre_OnControlClose;
                 PrincipalControl.Content = controlAjoutCircuit;
+                Controler.MyStatBar.SetMessage("Vous allez ajouter un circuit");
             }
-            catch (Exception)
+            else
             {
-                Controler.MyStatBar.SetWarning("Terminer votre modification avant de faire un ajout !");
+                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
             }
         }
 
         //Bouton du mode admin
         private void ButtonAdmin_Click(object sender, RoutedEventArgs e)
         {
-            ControlAdmin admin = new ControlAdmin(Controler);
-            PrincipalControl.Content = admin;
-            Controler.MyStatBar.SetError("ATTENTION vous êtes en mot ADMINISTRATEUR");
+            if (AdminIsClose)
+            {
+                Admin = new ControlAdmin(Controler);
+                Admin.OnControlClose += Fenetre_OnControlClose;
+                PrincipalControl.Content = Admin;
+                Controler.MyStatBar.SetWarning("ATTENTION vous êtes en mode ADMINISTRATEUR");
+            }
         }
 
         //Bouton pour sauvegarder les données
@@ -158,35 +184,42 @@ namespace ClubUI
         //Bouton pour ce déconnecter
         private void ButtonDeconnecter_Click(object sender, RoutedEventArgs e)
         {
-            User = null;
-
-            this.Hide();
-
-            Login login = new Login();
-            login.ShowDialog();
-
-            User = Controler.RecherchePilote(login.Nom, login.Prenom);
-
-            if (User == null)
+            if (AdminIsClose)
             {
-                AjoutPilote ajoutPilote = new AjoutPilote(Controler, login.Nom, login.Prenom);
-                ajoutPilote.ShowDialog();
+                User = null;
 
-                if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
+                this.Hide();
+
+                Login login = new Login();
+                login.ShowDialog();
+
+                User = Controler.RecherchePilote(login.Nom, login.Prenom);
+
+                if (User == null)
                 {
-                    User = ajoutPilote.NouvPilote;
+                    AjoutPilote ajoutPilote = new AjoutPilote(Controler, login.Nom, login.Prenom);
+                    ajoutPilote.ShowDialog();
+
+                    if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
+                    {
+                        User = ajoutPilote.NouvPilote;
+                    }
+                    else
+                    {
+                        Close();
+                    }
                 }
-                else
+
+                if (User != null)
                 {
-                    Close();
+                    this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
+                    this.Show();
+                    Controler.MyStatBar.SetMessage("Bienvenue " + User.Nom + " " + User.Prenom);
                 }
             }
-
-            if (User != null)
+            else
             {
-                this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
-                this.Show();
-                Controler.MyStatBar.SetMessage("Bienvenue " + User.Nom + " " + User.Prenom);
+                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
             }
         }
 
@@ -199,7 +232,9 @@ namespace ClubUI
         //Bouton pour la fenêtre d'option
         private void ButtonOption_Click(object sender, RoutedEventArgs e)
         {
-
+            Option option = new Option("Test");
+            option.ColorChange += Option_colorChange;
+            option.Show();
         }
 
         //Bouton pour la box à propos
@@ -224,15 +259,22 @@ namespace ClubUI
         //Double-click sur un élement de la liste
         private void SideListe_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if(SideListe.SelectedItem is Pilote pilote)
+            if (AdminIsClose)
             {
-                ControlAffichePilote affichePilote = new ControlAffichePilote(Controler, pilote);
-                PrincipalControl.Content = affichePilote;
+                if (SideListe.SelectedItem is Pilote pilote)
+                {
+                    ControlAffichePilote affichePilote = new ControlAffichePilote(Controler, pilote);
+                    PrincipalControl.Content = affichePilote;
+                }
+                else if (SideListe.SelectedItem is Circuit circuit)
+                {
+                    ControlAfficheCircuit afficheCircuit = new ControlAfficheCircuit(Controler, circuit);
+                    PrincipalControl.Content = afficheCircuit;
+                }
             }
-            else if(SideListe.SelectedItem is Circuit circuit)
+            else
             {
-                ControlAfficheCircuit afficheCircuit = new ControlAfficheCircuit(Controler, circuit);
-                PrincipalControl.Content = afficheCircuit;
+                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
             }
         }
         #endregion
@@ -242,6 +284,19 @@ namespace ClubUI
         private void Fenetre_OnControlClose()
         {
             PrincipalControl.Content = null;
+            if(!AdminIsClose)
+            {
+                Admin = null;
+            }
+        }
+
+        //Fonction appelée par l'évenement de la fenetre option
+        private void Option_colorChange(Color text, Color back, String path)
+        {
+            SideListe.Foreground = new SolidColorBrush(text);
+            SideListe.Background = new SolidColorBrush(back);
+            string provi = path;
+            Controler.MyStatBar.SetMessage("Options modifiées");
         }
         #endregion
 

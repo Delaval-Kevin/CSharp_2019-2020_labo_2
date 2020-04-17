@@ -12,7 +12,10 @@
              TextOptions.TextRenderingMode="Auto"        
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" VerticalAlignment="Top" HorizontalAlignment="Left">
-    <Grid  x:Name="CurentGrid">
+    <DockPanel  x:Name="CurentGrid">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2,5">
+            <Button Content="Quitter le mode Administrateur" Click="Button_Click" Background="#FFF00505" Margin="20,0,0,0"/>
+        </StackPanel>
         <TabControl Grid.Column="3" Background="{DynamicResource MaterialDesignPaper}" FontFamily="{DynamicResource MaterialDesignFont}">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -77,5 +80,5 @@
                 </DataGrid>
             </TabItem>
         </TabControl>
-    </Grid>
+    </DockPanel>
 </UserControl>

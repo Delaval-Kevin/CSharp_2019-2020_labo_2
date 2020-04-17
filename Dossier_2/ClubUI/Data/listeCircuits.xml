@@ -7,4 +7,10 @@
     <Adresse>Rue derrière 12</Adresse>
     <Localite>622314 La Taillette</Localite>
   </Circuit>
+  <Circuit>
+    <NumCircuit>efefzefe</NumCircuit>
+    <Nom>ezfezfze</Nom>
+    <Adresse>zefezf</Adresse>
+    <Localite>ezfezfez</Localite>
+  </Circuit>
 </ArrayOfCircuit>
