@@ -16,14 +16,15 @@
         FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner" Icon="logo2.png">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="33,34,0,0" TextWrapping="Wrap" Text="Option" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" TextDecorations="Underline"/>
-        <TextBlock HorizontalAlignment="Left" Margin="60.5,82.5,0,0" TextWrapping="Wrap" Text="Change of access path :" VerticalAlignment="Top"/>
-        <TextBox x:Name="path" HorizontalAlignment="Left" Height="23" Margin="199.5,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550"/>
-        <TextBlock HorizontalAlignment="Left" Margin="60,142,0,0" TextWrapping="Wrap" Text="Change text color :" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="60,235,0,0" TextWrapping="Wrap" Text="Change background color :" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="60.5,82.5,0,0" TextWrapping="Wrap" Text="Chemin d'accès de la sauvegarde :" VerticalAlignment="Top"/>
+        <TextBlock x:Name="path" HorizontalAlignment="Left" Margin="267.167,82.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482.333"/>
+        <TextBlock HorizontalAlignment="Left" Margin="60,142,0,0" TextWrapping="Wrap" Text="Changer la couleur du texte :" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="60,235,0,0" TextWrapping="Wrap" Text="Changer la couleur du fond :" VerticalAlignment="Top"/>
+        <Button Content="Changer" HorizontalAlignment="Left" Margin="66.9,103.1,0,0" VerticalAlignment="Top" Width="97.667" Height="25.333" Click="Changer_Click"/>
         <Button Content="OK" HorizontalAlignment="Left" Margin="352.5,352,0,0" VerticalAlignment="Top" Width="90" Click="OK_Button"/>
         <Button Content="Apply" HorizontalAlignment="Left" Margin="234,352,0,0" VerticalAlignment="Top" Width="75" Click="Apply_Button"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="477,352,0,0" VerticalAlignment="Top" Width="75" Click="Cancel_Button"/>
-        <materialDesign:ColorPicker x:Name="TextColor" Color="#FF2196F3" HorizontalAlignment="Left" Margin="234,142,0,0" VerticalAlignment="Top" Height="67.067" Width="515.5" Background="#FF303030"/>
-        <materialDesign:ColorPicker x:Name="BackColor" Color="#FF303030" HorizontalAlignment="Left" Margin="234,235,0,0" VerticalAlignment="Top" Height="67.067" Width="515.5"/>
+        <materialDesign:ColorPicker x:Name="TextColor" HorizontalAlignment="Left" Margin="234,142,0,0" VerticalAlignment="Top" Height="67.067" Width="515.5" Background="#FF303030"/>
+        <materialDesign:ColorPicker x:Name="BackColor" HorizontalAlignment="Left" Margin="234,235,0,0" VerticalAlignment="Top" Height="67.067" Width="515.5"/>
     </Grid>
 </Window>

@@ -21,7 +21,7 @@
         <StackPanel VerticalAlignment="Top" DockPanel.Dock="Top">
             <Menu>
                 <Image Source="logo2.png" Height="45" Width="45"/>
-                <MenuItem Header="Fichier">
+                <MenuItem x:Name="ButtonFichier" Header="Fichier">
                     <MenuItem Header="Ajouter">
                         <MenuItem x:Name="ButtonAjoutChrono" Header="Chrono" Click="ButtonAjoutChrono_Click"/>
                         <MenuItem x:Name="ButtonAjoutPilote" Header="Pilote" Click="ButtonAjoutPilote_Click"/>

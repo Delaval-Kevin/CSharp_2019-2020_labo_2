@@ -48,6 +48,7 @@
     <Compile Include="Chronometre.cs" />
     <Compile Include="Circuit.cs" />
     <Compile Include="Enumerateurs.cs" />
+    <Compile Include="MyRegistry.cs" />
     <Compile Include="MyStatusBar.cs" />
     <Compile Include="Pilote.cs" />
     <Compile Include="Program.cs" />

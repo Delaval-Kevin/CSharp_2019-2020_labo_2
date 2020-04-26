@@ -40,7 +40,7 @@ namespace ClubUI
             Controler = controler;
             Circuit = circuit;
             CurentGrid.DataContext = Circuit;
-            ListeChrono.ItemsSource = Controler.ListeChronos;
+            ChronoGrid.DataContext = Controler.RechercheChronoCircuit(Circuit.NumCircuit);
         }
         #endregion
     }

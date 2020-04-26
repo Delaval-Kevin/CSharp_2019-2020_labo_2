@@ -1,7 +1,15 @@
-﻿using System;
-using System.Globalization;
+﻿/***********************************************************/
+/*Auteur : DELAVAL Kevin                                   */
+/*Groupe : 2203                                            */
+/*Application : Gestion d'un club de motocross             */
+/*Cours : C# - partie 3 du labo                            */
+/*Date de la dernière mise à jour : 15/04/2020             */
+/***********************************************************/
+
+using System;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Globalization;
 
 namespace ClubUI
 {

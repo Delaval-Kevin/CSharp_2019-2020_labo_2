@@ -13,6 +13,12 @@
              TextOptions.TextRenderingMode="Auto"        
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
+    <UserControl.Resources>
+        <CollectionViewSource Source="{Binding ListePilotes}"
+             x:Key="PilotesWithoutNewItemPlaceholder" />
+        <CollectionViewSource Source="{Binding ListeCircuits}"
+             x:Key="CircuitsWithoutNewItemPlaceholder" />
+    </UserControl.Resources>
     <Grid x:Name="CurentGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Label Content="Ajout du chrono" HorizontalAlignment="Left" Margin="158.832,23.172,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <Label Content="Numéro de Licence :" HorizontalAlignment="Left" Margin="29.781,72.344,0,0" VerticalAlignment="Top"/>
@@ -23,11 +29,11 @@
         <Label Content="Temps chrono :" HorizontalAlignment="Left" Margin="29.781,315.849,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="193.564,319.849,0,0" TextWrapping="Wrap" Text="'" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="226.554,319.849,0,0" TextWrapping="Wrap" Text="''" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ComboBoxNumLicence" HorizontalAlignment="Left" Margin="168.564,68.344,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=NumLicence}"/>
-        <ComboBox x:Name="ComboBoxNumCircuit" HorizontalAlignment="Left" Margin="168.564,117.227,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=NumCircuit}"/>
-        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="168.564,166.996,0,0" VerticalAlignment="Top" Width="275" SelectedDate="{Binding Path=DateChrono}"/>
-        <ComboBox x:Name="ComboBoxCondClim" HorizontalAlignment="Left" Margin="168.564,213.503,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=ConditionClimatique}"/>
-        <ComboBox x:Name="ComboBoxEtatCirc" HorizontalAlignment="Left" Margin="168.564,264.166,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding Path=EtatCircuit}"/>
+        <ComboBox x:Name="ComboBoxNumLicence" HorizontalAlignment="Left" Margin="168.564,68.344,0,0" VerticalAlignment="Top" Width="275" ItemsSource="{Binding Source={StaticResource PilotesWithoutNewItemPlaceholder}}"/>
+        <ComboBox x:Name="ComboBoxNumCircuit" HorizontalAlignment="Left" Margin="168.564,117.227,0,0" VerticalAlignment="Top" Width="275" ItemsSource="{Binding Source={StaticResource CircuitsWithoutNewItemPlaceholder}}"/>
+        <DatePicker x:Name="DatePicker" HorizontalAlignment="Left" Margin="168.564,166.996,0,0" VerticalAlignment="Top" Width="275" SelectedDate="{Binding DateChrono}"/>
+        <ComboBox x:Name="ComboBoxCondClim" HorizontalAlignment="Left" Margin="168.564,213.503,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding ConditionClimatique}"/>
+        <ComboBox x:Name="ComboBoxEtatCirc" HorizontalAlignment="Left" Margin="168.564,264.166,0,0" VerticalAlignment="Top" Width="275" SelectedItem="{Binding EtatCircuit}"/>
         <TextBox x:Name="TextBoxMinutes" HorizontalAlignment="Left" Height="23" Margin="168.564,315.849,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" />
         <TextBox x:Name="TextBoxSecondes" HorizontalAlignment="Left" Height="23" Margin="201.554,315.849,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" />
         <TextBox x:Name="TextBoxMiliemes" HorizontalAlignment="Left" Height="23" Margin="237.534,315.849,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" />

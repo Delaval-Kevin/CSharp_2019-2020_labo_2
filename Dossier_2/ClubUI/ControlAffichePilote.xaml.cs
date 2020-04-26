@@ -42,7 +42,7 @@ namespace ClubUI
             Controler = controler;
             Pilote = pilote;
             CurentGrid.DataContext = Pilote;
-            ChronoGrid.DataContext = Controler.ListeChronos;
+            ChronoGrid.DataContext = Controler.RechercheChronoPilote(Pilote.NumLicence);
         }
         #endregion
     }

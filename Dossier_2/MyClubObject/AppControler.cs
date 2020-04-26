@@ -11,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MyClubObject
 {
@@ -24,10 +26,11 @@ namespace MyClubObject
         [XmlAttribute]
         private ObservableCollection<Chronometre>   _listeChronos;
 
-        private readonly string _pilotesFileName = @"C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\listePilotes.xml";
-        private readonly string _circuitsFileName = @"C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\listeCircuits.xml";
-        private readonly string _chronosFileName = @"C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\listeChronos.xml";
+        private readonly string _pilotesFileName = @"\listePilotes.xml";
+        private readonly string _circuitsFileName = @"\listeCircuits.xml";
+        private readonly string _chronosFileName = @"\listeChronos.dat";
         private MyStatusBar _myStatBar;
+        private MyRegistry _myRegistry;
         #endregion
 
 
@@ -50,17 +53,17 @@ namespace MyClubObject
             private set { _listeChronos = value; }
         }
 
-        private string PilotesFileName
+        public string PilotesFileName
         {
             get { return _pilotesFileName; }
         }
 
-        private string CircuitsFileName
+        public string CircuitsFileName
         {
             get { return _circuitsFileName; }
         }
 
-        private string ChronosFileName
+        public string ChronosFileName
         {
             get { return _chronosFileName; }
         }
@@ -69,6 +72,12 @@ namespace MyClubObject
         {
             get { return _myStatBar; }
             set { _myStatBar = value; }
+        }
+
+        public MyRegistry MyRegist
+        {
+            get { return _myRegistry; }
+            set { _myRegistry = value; }
         }
         #endregion
 
@@ -80,6 +89,7 @@ namespace MyClubObject
             ListeCircuits = new ObservableCollection<Circuit>();
             ListeChronos = new ObservableCollection<Chronometre>();
             MyStatBar = new MyStatusBar();
+            MyRegist = new MyRegistry();
         }
         #endregion
 
@@ -111,7 +121,7 @@ namespace MyClubObject
             public void ChargementPilotes()
             {
                 XmlSerializer xmlFormat = new XmlSerializer(typeof(ObservableCollection<Pilote>));
-                using (Stream fStream = File.OpenRead(PilotesFileName)) 
+                using (Stream fStream = File.OpenRead(MyRegist.GetValue(Params.SavePath) + PilotesFileName)) 
                 { 
                     ListePilotes = (ObservableCollection<Pilote>)xmlFormat.Deserialize(fStream); 
                 }
@@ -121,7 +131,7 @@ namespace MyClubObject
             public void ChargementCircuits()
             {
                 XmlSerializer xmlFormat = new XmlSerializer(typeof(ObservableCollection<Circuit>));
-                using (Stream fStream = File.OpenRead(CircuitsFileName))
+                using (Stream fStream = File.OpenRead(MyRegist.GetValue(Params.SavePath) + CircuitsFileName))
                 {
                     ListeCircuits = (ObservableCollection<Circuit>)xmlFormat.Deserialize(fStream);
                 }
@@ -130,10 +140,10 @@ namespace MyClubObject
             //Fonction pour charger les chronos
             public void ChargementChronos()
             {
-                XmlSerializer xmlFormat = new XmlSerializer(typeof(ObservableCollection<Chronometre>));
-                using (Stream fStream = File.OpenRead(ChronosFileName))
+                BinaryFormatter binFormat = new BinaryFormatter();
+                using (Stream fstream = File.OpenRead(MyRegist.GetValue(Params.SavePath) + ChronosFileName))
                 {
-                    ListeChronos = (ObservableCollection<Chronometre>)xmlFormat.Deserialize(fStream);
+                    ListeChronos = (ObservableCollection<Chronometre>)binFormat.Deserialize(fstream);
                 }
             }
 
@@ -149,7 +159,7 @@ namespace MyClubObject
             public void SauvegardePilotes()
             {
                 XmlSerializer xmlFormat = new XmlSerializer(typeof(ObservableCollection<Pilote>));
-                using (Stream fStream = new FileStream(PilotesFileName, FileMode.Create, FileAccess.Write, FileShare.None)) 
+                using (Stream fStream = new FileStream(MyRegist.GetValue(Params.SavePath) + PilotesFileName, FileMode.Create, FileAccess.Write, FileShare.None)) 
                 { 
                     xmlFormat.Serialize(fStream, ListePilotes); 
                 }
@@ -159,7 +169,7 @@ namespace MyClubObject
             public void SauvegardeCircuits()
             {
                 XmlSerializer xmlFormat = new XmlSerializer(typeof(ObservableCollection<Circuit>));
-                using (Stream fStream = new FileStream(CircuitsFileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (Stream fStream = new FileStream(MyRegist.GetValue(Params.SavePath) + CircuitsFileName, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     xmlFormat.Serialize(fStream, ListeCircuits);
                 }
@@ -168,10 +178,10 @@ namespace MyClubObject
             //Fonction pour charger les chronos
             public void SauvegardeChronos()
             {
-                XmlSerializer xmlFormat = new XmlSerializer(typeof(ObservableCollection<Chronometre>));
-                using (Stream fStream = new FileStream(ChronosFileName, FileMode.Create, FileAccess.Write, FileShare.None))
+                BinaryFormatter binFormat = new BinaryFormatter();
+                using (Stream fStream = new FileStream(MyRegist.GetValue(Params.SavePath) + ChronosFileName, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    xmlFormat.Serialize(fStream, ListeChronos);
+                    binFormat.Serialize(fStream, ListeChronos);
                 }
             }
             #endregion
@@ -193,6 +203,18 @@ namespace MyClubObject
             public Circuit RechercheCircuit(string numcircuit)
             {
                 return ListeCircuits.ToList<Circuit>().Find(circuit => circuit.NumCircuit == numcircuit);
+            }
+
+            //Fonction qui retourne la liste de tous les chronos du pilote avec son numéro de licence
+            public List<Chronometre> RechercheChronoPilote(string numlicence)
+            {
+                return ListeChronos.ToList<Chronometre>().FindAll(chrono => chrono.NumLicence == numlicence);
+            }
+
+            //Fonction qui retourne la liste de tous les chronos du circuit avec son numéro de circuit
+            public List<Chronometre> RechercheChronoCircuit(string numcircuit)
+            {
+                return ListeChronos.ToList<Chronometre>().FindAll(chrono => chrono.NumCircuit == numcircuit);
             }
             #endregion
 
@@ -293,9 +315,9 @@ namespace MyClubObject
             }
             #endregion
 
-        #region AJOUT
-        //Fonction qui permet d'ajouter un pilote à la liste
-        public void AjoutPilote(Pilote pilote)
+            #region AJOUT
+            //Fonction qui permet d'ajouter un pilote à la liste
+            public void AjoutPilote(Pilote pilote)
             {
                 ListePilotes.Add(pilote);
                 SauvegardePilotes();

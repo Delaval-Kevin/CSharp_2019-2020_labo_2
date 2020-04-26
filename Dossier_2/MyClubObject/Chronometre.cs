@@ -11,20 +11,15 @@ using System.Xml.Serialization;
 
 namespace MyClubObject
 {
+    [Serializable]
     public class Chronometre
     {
         #region VARIABLES MEMBRES
-        [XmlAttribute]
         private string      _numLicence;
-        [XmlAttribute]
         private string      _numCircuit;
-        [XmlAttribute]
         private DateTime    _dateChrono;
-        [XmlAttribute]
         private CondClim    _conditionClimatique;
-        [XmlAttribute]
         private EtatCirc    _etatCircuit;
-        [XmlAttribute]
         private TimeSpan    _tempsChrono;
         #endregion
 

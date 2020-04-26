@@ -61,14 +61,12 @@ namespace ClubUI
         #region CONSTRUCTEURS
         public ControlAjoutChrono(AppControler controler, Pilote user)
         {
+            Controler = controler;
+            this.DataContext = Controler;
+
             InitializeComponent();
 
-            Controler = controler;
-
-            ComboBoxNumLicence.ItemsSource = Controler.ListePilotes;
             ComboBoxNumLicence.SelectedItem = (Controler.RecherchePilote(user.NumLicence));
-            ComboBoxNumCircuit.ItemsSource = Controler.ListeCircuits;
-            ComboBoxNumCircuit.SelectedItem = Controler.ListeCircuits[0];
             ComboBoxCondClim.ItemsSource = Enum.GetValues(typeof(CondClim));
             ComboBoxCondClim.SelectedItem = CondClim.Soleil;
             ComboBoxEtatCirc.ItemsSource = Enum.GetValues(typeof(EtatCirc));
@@ -92,6 +90,14 @@ namespace ClubUI
             if (int.TryParse(TextBoxMinutes.Text, out int min) && int.TryParse(TextBoxSecondes.Text, out int sec) && int.TryParse(TextBoxMiliemes.Text, out int mili))
             {
                 NouvChrono.TempsChrono = new TimeSpan(0, 0, min, sec, mili);
+                if(ComboBoxNumLicence.SelectedItem is Pilote pil)
+                {
+                    NouvChrono.NumLicence = pil.NumLicence;
+                }
+                if (ComboBoxNumCircuit.SelectedItem is Circuit cir)
+                {
+                    NouvChrono.NumCircuit = cir.NumCircuit;
+                }
 
                 if (Controler.ChronoOk(NouvChrono))
                 {

@@ -1,16 +1,22 @@
 <?xml version="1.0"?>
 <ArrayOfCircuit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Circuit>
-    <NumCircuit>TFR00005</NumCircuit>
-    <Nom>MX Club La Taillette</Nom>
+    <NumCircuit>TBE00001</NumCircuit>
+    <Nom>City nuts</Nom>
     <Photo>C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\CircuitParDefaut.png</Photo>
-    <Adresse>Rue derrière 12</Adresse>
-    <Localite>622314 La Taillette</Localite>
+    <Localite>Bastogne</Localite>
   </Circuit>
   <Circuit>
-    <NumCircuit>efefzefe</NumCircuit>
-    <Nom>ezfezfze</Nom>
-    <Adresse>zefezf</Adresse>
-    <Localite>ezfezfez</Localite>
+    <NumCircuit>TFR00002</NumCircuit>
+    <Nom>MX Taillette</Nom>
+    <Photo>C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\CircuitParDefaut.png</Photo>
+    <Localite>La Taillette</Localite>
+  </Circuit>
+  <Circuit>
+    <NumCircuit>PIT00003</NumCircuit>
+    <Nom>MX Asti</Nom>
+    <Photo>C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\CircuitParDefaut.png</Photo>
+    <Adresse>rue cachée</Adresse>
+    <Localite>Asti </Localite>
   </Circuit>
 </ArrayOfCircuit>

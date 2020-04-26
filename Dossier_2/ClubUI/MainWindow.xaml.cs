@@ -64,6 +64,8 @@ namespace ClubUI
             try
             {
                 Controler.ChargementDonnees();
+                SideListe.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Controler.MyRegist.GetValue(Params.ListFontColor)));
+                SideListe.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Controler.MyRegist.GetValue(Params.ListBackColor)));
             }
             catch(Exception exc)
             {
@@ -87,6 +89,7 @@ namespace ClubUI
                 if(ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
                 {
                     User = ajoutPilote.NouvPilote;
+                    Controler.AjoutPilote(ajoutPilote.NouvPilote);
                 }
                 else
                 {
@@ -106,72 +109,50 @@ namespace ClubUI
         //Bouton d'ajout d'un chrono
         private void ButtonAjoutChrono_Click(object sender, RoutedEventArgs e)
         {
-            if (AdminIsClose)
+            if (Controler.ListeCircuits.Count > 0)
             {
-                if (Controler.ListeCircuits.Count > 0)
-                {
-                    ControlAjoutChrono controlAjoutChrono = new ControlAjoutChrono(Controler, User);
-                    controlAjoutChrono.OnChronoApply += Controler.AjoutChrono;
-                    controlAjoutChrono.OnControlClose += Fenetre_OnControlClose;
-                    PrincipalControl.Content = controlAjoutChrono;
-                    Controler.MyStatBar.SetMessage("Vous allez ajouter un chrono");
-                }
-                else
-                {
-                    Controler.MyStatBar.SetError("Ajout impossible, aucun circuit enregistré");
-                }
+                ControlAjoutChrono controlAjoutChrono = new ControlAjoutChrono(Controler, User);
+                controlAjoutChrono.OnChronoApply += Controler.AjoutChrono;
+                controlAjoutChrono.OnControlClose += Fenetre_OnControlClose;
+                PrincipalControl.Content = controlAjoutChrono;
+                Controler.MyStatBar.SetMessage("Vous allez ajouter un chrono");
             }
             else
             {
-                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
+                Controler.MyStatBar.SetError("Ajout impossible, aucun circuit enregistré");
             }
-
         }
 
         //Bouton d'ajout d'un pilote
         private void ButtonAjoutPilote_Click(object sender, RoutedEventArgs e)
         {
-            if (AdminIsClose)
-            {
-                ControlAjoutPilote controlAjoutPilote = new ControlAjoutPilote(Controler);
-                controlAjoutPilote.OnPiloteApply += Controler.AjoutPilote;
-                controlAjoutPilote.OnControlClose += Fenetre_OnControlClose;
-                PrincipalControl.Content = controlAjoutPilote;
-                Controler.MyStatBar.SetMessage("Vous allez ajouter un pilote");
-            }
-            else
-            {
-                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
-            }
+            ControlAjoutPilote controlAjoutPilote = new ControlAjoutPilote(Controler);
+            controlAjoutPilote.OnPiloteApply += Controler.AjoutPilote;
+            controlAjoutPilote.OnControlClose += Fenetre_OnControlClose;
+            PrincipalControl.Content = controlAjoutPilote;
+            Controler.MyStatBar.SetMessage("Vous allez ajouter un pilote");
         }
 
         //Bouton d'ajout d'un circuit
         private void ButtonAjoutCircuit_Click(object sender, RoutedEventArgs e)
         {
-            if (AdminIsClose)
-            {
-                ControlAjoutCircuit controlAjoutCircuit = new ControlAjoutCircuit(Controler);
-                controlAjoutCircuit.OnCircuitApply += Controler.AjoutCircuit;
-                controlAjoutCircuit.OnControlClose += Fenetre_OnControlClose;
-                PrincipalControl.Content = controlAjoutCircuit;
-                Controler.MyStatBar.SetMessage("Vous allez ajouter un circuit");
-            }
-            else
-            {
-                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
-            }
+            ControlAjoutCircuit controlAjoutCircuit = new ControlAjoutCircuit(Controler);
+            controlAjoutCircuit.OnCircuitApply += Controler.AjoutCircuit;
+            controlAjoutCircuit.OnControlClose += Fenetre_OnControlClose;
+            PrincipalControl.Content = controlAjoutCircuit;
+            Controler.MyStatBar.SetMessage("Vous allez ajouter un circuit");
         }
 
         //Bouton du mode admin
         private void ButtonAdmin_Click(object sender, RoutedEventArgs e)
         {
-            if (AdminIsClose)
-            {
-                Admin = new ControlAdmin(Controler);
-                Admin.OnControlClose += Fenetre_OnControlClose;
-                PrincipalControl.Content = Admin;
-                Controler.MyStatBar.SetWarning("ATTENTION vous êtes en mode ADMINISTRATEUR");
-            }
+            ButtonFichier.IsEnabled = false;
+            Pilote.IsEnabled = false;
+            Circuit.IsEnabled = false;
+            Admin = new ControlAdmin(Controler);
+            Admin.OnControlClose += Fenetre_OnControlClose;
+            PrincipalControl.Content = Admin;
+            Controler.MyStatBar.SetWarning("ATTENTION vous êtes en mode ADMINISTRATEUR");
         }
 
         //Bouton pour sauvegarder les données
@@ -184,42 +165,35 @@ namespace ClubUI
         //Bouton pour ce déconnecter
         private void ButtonDeconnecter_Click(object sender, RoutedEventArgs e)
         {
-            if (AdminIsClose)
+            User = null;
+
+            this.Hide();
+
+            Login login = new Login();
+            login.ShowDialog();
+
+            User = Controler.RecherchePilote(login.Nom, login.Prenom);
+
+            if (User == null)
             {
-                User = null;
+                AjoutPilote ajoutPilote = new AjoutPilote(Controler, login.Nom, login.Prenom);
+                ajoutPilote.ShowDialog();
 
-                this.Hide();
-
-                Login login = new Login();
-                login.ShowDialog();
-
-                User = Controler.RecherchePilote(login.Nom, login.Prenom);
-
-                if (User == null)
+                if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
                 {
-                    AjoutPilote ajoutPilote = new AjoutPilote(Controler, login.Nom, login.Prenom);
-                    ajoutPilote.ShowDialog();
-
-                    if (ajoutPilote.AjoutOK)//verifie si l'ajout du pilote est OK
-                    {
-                        User = ajoutPilote.NouvPilote;
-                    }
-                    else
-                    {
-                        Close();
-                    }
+                    User = ajoutPilote.NouvPilote;
                 }
-
-                if (User != null)
+                else
                 {
-                    this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
-                    this.Show();
-                    Controler.MyStatBar.SetMessage("Bienvenue " + User.Nom + " " + User.Prenom);
+                    Close();
                 }
             }
-            else
+
+            if (User != null)
             {
-                Controler.MyStatBar.SetError("Fermer d'abord le mode administrateur");
+                this.Title = "Club Manager : " + User.Nom + " " + User.Prenom;
+                this.Show();
+                Controler.MyStatBar.SetMessage("Bienvenue " + User.Nom + " " + User.Prenom);
             }
         }
 
@@ -232,7 +206,7 @@ namespace ClubUI
         //Bouton pour la fenêtre d'option
         private void ButtonOption_Click(object sender, RoutedEventArgs e)
         {
-            Option option = new Option("Test");
+            Option option = new Option(Controler);
             option.ColorChange += Option_colorChange;
             option.Show();
         }
@@ -287,15 +261,17 @@ namespace ClubUI
             if(!AdminIsClose)
             {
                 Admin = null;
+                ButtonFichier.IsEnabled = true;
+                Pilote.IsEnabled = true;
+                Circuit.IsEnabled = true;
             }
         }
 
         //Fonction appelée par l'évenement de la fenetre option
-        private void Option_colorChange(Color text, Color back, String path)
+        private void Option_colorChange(Color text, Color back)
         {
             SideListe.Foreground = new SolidColorBrush(text);
             SideListe.Background = new SolidColorBrush(back);
-            string provi = path;
             Controler.MyStatBar.SetMessage("Options modifiées");
         }
         #endregion
