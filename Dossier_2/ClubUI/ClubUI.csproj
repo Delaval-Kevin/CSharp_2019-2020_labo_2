@@ -139,6 +139,7 @@
     <Compile Include="ControlAjoutPilote.xaml.cs">
       <DependentUpon>ControlAjoutPilote.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DateToDate.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

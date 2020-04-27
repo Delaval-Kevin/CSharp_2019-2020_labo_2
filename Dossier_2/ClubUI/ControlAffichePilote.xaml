@@ -12,6 +12,9 @@
              TextOptions.TextRenderingMode="Auto"        
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
+    <UserControl.Resources>
+        <local:DateToDate x:Key="ConvertDate"/>
+    </UserControl.Resources>
     <Grid x:Name="CurentGrid">
         <TextBlock Text="Données du pilote" HorizontalAlignment="Left" Margin="309.832,23.172,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
         <TextBlock Text="Numéro de Licence :" HorizontalAlignment="Left" Margin="29.781,291.344,0,0" VerticalAlignment="Top"/>
@@ -26,12 +29,12 @@
         <TextBlock x:Name="TextBlockNumLicence" HorizontalAlignment="Left"  Margin="160.184,291.944,0,0" TextWrapping="Wrap" Text="{Binding Path=NumLicence}" VerticalAlignment="Top" Width="220"/>
         <TextBlock x:Name="TextBlockNom" HorizontalAlignment="Left"  Margin="160.184,340.227,0,0" TextWrapping="Wrap" Text="{Binding Path=Nom}" VerticalAlignment="Top" Width="220"/>
         <TextBlock x:Name="TextBlockPrenom" HorizontalAlignment="Left"  Margin="160.184,389.687,0,0" TextWrapping="Wrap" Text="{Binding Path=Prenom}" VerticalAlignment="Top" Width="220"/>
-        <TextBlock x:Name="TextBlockDateNaiss" HorizontalAlignment="Left"   Margin="160.184,440.35,0,0" Text="{Binding Path=DateNaissance}" VerticalAlignment="Top" Width="220" />
+        <TextBlock x:Name="TextBlockDateNaiss" HorizontalAlignment="Left"   Margin="160.184,440.35,0,0" Text="{Binding Path=DateNaissance,Converter={StaticResource ConvertDate}}" VerticalAlignment="Top" Width="220" />
         <TextBlock x:Name="TextBlockAdresse" HorizontalAlignment="Left"  Margin="160.184,488.033,0,0" TextWrapping="Wrap" Text="{Binding Path=Adresse}" VerticalAlignment="Top" Width="220"/>
         <TextBlock x:Name="TextBlockLocalite" HorizontalAlignment="Left"  Margin="160.184,540.185,0,-103.274" TextWrapping="Wrap" Text="{Binding Path=Localite}" VerticalAlignment="Top" Width="220"/>
         <DataGrid x:Name="ChronoGrid" IsReadOnly="True" HorizontalAlignment="Left" Margin="431.781,108,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Header="Date" Binding="{Binding Path=DateChrono}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Date" Binding="{Binding Path=DateChrono,Converter={StaticResource ConvertDate}}" />
                 <DataGridTextColumn IsReadOnly="True" Header="N° circuit" Binding="{Binding Path=NumCircuit}" />
                 <DataGridTextColumn IsReadOnly="True" Header="Condition climatique" Binding="{Binding Path=ConditionClimatique}" />
                 <DataGridTextColumn IsReadOnly="True" Header="Etat du circuit" Binding="{Binding Path=EtatCircuit}" />

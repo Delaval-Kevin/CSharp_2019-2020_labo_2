@@ -12,6 +12,9 @@
              TextOptions.TextRenderingMode="Auto"        
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <UserControl.Resources>
+        <local:DateToDate x:Key="ConvertDate"/>
+    </UserControl.Resources>
     <Grid x:Name="CurentGrid">
         <TextBlock Text="Données du circuit" HorizontalAlignment="Left" Margin="320,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20"/>
         <TextBlock Text="Numéro du circuit :" HorizontalAlignment="Left" Margin="44,243.388,0,0" VerticalAlignment="Top"/>
@@ -26,7 +29,7 @@
         <TextBlock x:Name="TextBoxLocalite" HorizontalAlignment="Left" Margin="167.317,392.718,0,0" TextWrapping="Wrap" Text="{Binding Path=Localite}" VerticalAlignment="Top" Width="220"/>
         <DataGrid x:Name="ChronoGrid" IsReadOnly="True" HorizontalAlignment="Left" Margin="431.781,108,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Header="Date" Binding="{Binding Path=DateChrono}" />
+                <DataGridTextColumn IsReadOnly="True" Header="Date" Binding="{Binding Path=DateChrono,Converter={StaticResource ConvertDate}}" />
                 <DataGridTextColumn IsReadOnly="True" Header="N° circuit" Binding="{Binding Path=NumLicence}" />
                 <DataGridTextColumn IsReadOnly="True" Header="Condition climatique" Binding="{Binding Path=ConditionClimatique}" />
                 <DataGridTextColumn IsReadOnly="True" Header="Etat du circuit" Binding="{Binding Path=EtatCircuit}" />
