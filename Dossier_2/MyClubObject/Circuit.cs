@@ -3,11 +3,12 @@
 /*Groupe : 2203                                            */
 /*Application : Gestion d'un club de motocross             */
 /*Cours : C# - partie 3 du labo                            */
-/*Date de la dernière mise à jour : 13/04/2020             */
+/*Date de la dernière mise à jour : 02/05/2020             */
 /***********************************************************/
 
 using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace MyClubObject
 {
@@ -28,6 +29,8 @@ namespace MyClubObject
         private string _adresse;
         [XmlAttribute]
         private string _localite;
+
+        private List<Chronometre> _listeChrono;
         #endregion
 
 
@@ -97,6 +100,12 @@ namespace MyClubObject
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Localite"));
                 }
             }
+        }
+
+        public List<Chronometre> ListeChrono
+        {
+            get { return _listeChrono; }
+            set { _listeChrono = value; }
         }
 
         public string Affiche

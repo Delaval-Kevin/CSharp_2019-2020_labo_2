@@ -3,7 +3,7 @@
 /*Groupe : 2203                                            */
 /*Application : Gestion d'un club de motocross             */
 /*Cours : C# - partie 3 du labo                            */
-/*Date de la dernière mise à jour : 13/04/2020             */
+/*Date de la dernière mise à jour : 02/05/2020             */
 /***********************************************************/
 
 using MyClubObject;
@@ -40,7 +40,7 @@ namespace ClubUI
             Controler = controler;
             Circuit = circuit;
             CurentGrid.DataContext = Circuit;
-            ChronoGrid.DataContext = Controler.RechercheChronoCircuit(Circuit.NumCircuit);
+            ChronoGrid.DataContext = Circuit.ListeChrono;
         }
         #endregion
     }

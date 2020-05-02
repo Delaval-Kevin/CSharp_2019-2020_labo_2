@@ -3,7 +3,7 @@
 /*Groupe : 2203                                            */
 /*Application : Gestion d'un club de motocross             */
 /*Cours : C# - partie 3 du labo                            */
-/*Date de la dernière mise à jour : 13/04/2020             */
+/*Date de la dernière mise à jour : 02/05/2020             */
 /***********************************************************/
 
 using System;
@@ -115,6 +115,16 @@ namespace MyClubObject
                 ChargementPilotes();
                 ChargementCircuits();
                 ChargementChronos();
+
+                foreach(Pilote pilote in ListePilotes)
+                {
+                    pilote.ListeChrono = RechercheChronoPilote(pilote.NumLicence);
+                }
+
+                foreach (Circuit circuit in ListeCircuits)
+                {
+                    circuit.ListeChrono = RechercheChronoCircuit(circuit.NumCircuit);
+                }
             }
 
             //Fonction pour charger les pilotes
@@ -333,6 +343,11 @@ namespace MyClubObject
             public void AjoutChrono(Chronometre chrono)
             {
                 ListeChronos.Add(chrono);
+
+                //Ajoute le chrono à la liste du pilote concerné
+                RecherchePilote(chrono.NumLicence).ListeChrono.Add(chrono);
+                //Ajoute le chrono à la liste du circuit concerné
+                RechercheCircuit(chrono.NumCircuit).ListeChrono.Add(chrono);
             }
             #endregion
 

@@ -8,6 +8,24 @@
     <DateNaissance>1987-01-29T00:00:00</DateNaissance>
     <Adresse>Rue François Michoel 222B</Adresse>
     <Localite>4845 Sart-lez-Spa</Localite>
+    <ListeChrono>
+      <Chronometre>
+        <NumLicence>PBE0000001</NumLicence>
+        <NumCircuit>TFR00002</NumCircuit>
+        <DateChrono>2020-04-25T00:00:00+02:00</DateChrono>
+        <ConditionClimatique>Neige</ConditionClimatique>
+        <EtatCircuit>Gelé</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+      <Chronometre>
+        <NumLicence>PBE0000001</NumLicence>
+        <NumCircuit>TBE00001</NumCircuit>
+        <DateChrono>2020-05-02T00:00:00+02:00</DateChrono>
+        <ConditionClimatique>Soleil</ConditionClimatique>
+        <EtatCircuit>Sec</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+    </ListeChrono>
   </Pilote>
   <Pilote>
     <NumLicence>PBE0000002</NumLicence>
@@ -15,6 +33,24 @@
     <Nom>Hendrick</Nom>
     <Prenom>Samuel</Prenom>
     <DateNaissance>2000-01-01T00:00:00</DateNaissance>
+    <ListeChrono>
+      <Chronometre>
+        <NumLicence>PBE0000002</NumLicence>
+        <NumCircuit>TBE00001</NumCircuit>
+        <DateChrono>2020-04-15T00:00:00</DateChrono>
+        <ConditionClimatique>Neige</ConditionClimatique>
+        <EtatCircuit>Gelé</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+      <Chronometre>
+        <NumLicence>PBE0000002</NumLicence>
+        <NumCircuit>PIT00003</NumCircuit>
+        <DateChrono>2020-05-02T00:00:00+02:00</DateChrono>
+        <ConditionClimatique>Soleil</ConditionClimatique>
+        <EtatCircuit>Sec</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+    </ListeChrono>
   </Pilote>
   <Pilote>
     <NumLicence>PBE0000003</NumLicence>
@@ -22,6 +58,16 @@
     <Nom>Collette</Nom>
     <Prenom>Loic</Prenom>
     <DateNaissance>1999-12-01T00:00:00</DateNaissance>
+    <ListeChrono>
+      <Chronometre>
+        <NumLicence>PBE0000003</NumLicence>
+        <NumCircuit>PIT00003</NumCircuit>
+        <DateChrono>2020-04-25T00:00:00+02:00</DateChrono>
+        <ConditionClimatique>Soleil</ConditionClimatique>
+        <EtatCircuit>Sec</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+    </ListeChrono>
   </Pilote>
   <Pilote>
     <NumLicence>PBE0000004</NumLicence>
@@ -29,5 +75,15 @@
     <Nom>Khamana</Nom>
     <Prenom>Bene</Prenom>
     <DateNaissance>1995-07-14T00:00:00</DateNaissance>
+    <ListeChrono>
+      <Chronometre>
+        <NumLicence>PBE0000004</NumLicence>
+        <NumCircuit>PIT00003</NumCircuit>
+        <DateChrono>2020-04-25T00:00:00+02:00</DateChrono>
+        <ConditionClimatique>Pluie</ConditionClimatique>
+        <EtatCircuit>Boueux</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+    </ListeChrono>
   </Pilote>
 </ArrayOfPilote>
