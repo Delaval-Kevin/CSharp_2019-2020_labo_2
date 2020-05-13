@@ -19,11 +19,11 @@ namespace MyClubObject
     public class AppControler
     {
         #region VARIABLES MEMBRES
-        [XmlAttribute]
+        
         private ObservableCollection<Pilote>        _listePilotes;
-        [XmlAttribute]
+        
         private ObservableCollection<Circuit>       _listeCircuits;
-        [XmlAttribute]
+        
         private ObservableCollection<Chronometre>   _listeChronos;
 
         private readonly string _pilotesFileName = @"\listePilotes.xml";
