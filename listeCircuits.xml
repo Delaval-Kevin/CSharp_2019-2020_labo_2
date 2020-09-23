@@ -22,6 +22,14 @@
         <EtatCircuit>Sec</EtatCircuit>
         <TempsChrono />
       </Chronometre>
+      <Chronometre>
+        <NumLicence>PBE0000005</NumLicence>
+        <NumCircuit>TBE00001</NumCircuit>
+        <DateChrono>2020-05-05T00:00:00</DateChrono>
+        <ConditionClimatique>Brouillard</ConditionClimatique>
+        <EtatCircuit>Boueux</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
     </ListeChrono>
   </Circuit>
   <Circuit>
@@ -72,5 +80,13 @@
         <TempsChrono />
       </Chronometre>
     </ListeChrono>
+  </Circuit>
+  <Circuit>
+    <NumCircuit>TFR00004</NumCircuit>
+    <Nom>Circuit1</Nom>
+    <Photo>C:\Users\delav\Documents\2eme annee\C#\labo-phase-3-Head-Splitter\Dossier_2\ClubUI\Data\CircuitParDefaut.png</Photo>
+    <Adresse>Loin</Adresse>
+    <Localite>Musson</Localite>
+    <ListeChrono />
   </Circuit>
 </ArrayOfCircuit>

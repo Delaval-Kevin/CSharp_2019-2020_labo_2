@@ -86,4 +86,38 @@
       </Chronometre>
     </ListeChrono>
   </Pilote>
+  <Pilote>
+    <NumLicence>PBE0000005</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Images\Pleine-Lune.jpg</Photo>
+    <Nom>Bon</Nom>
+    <Prenom>Jean</Prenom>
+    <DateNaissance>1995-07-13T00:00:00</DateNaissance>
+    <Adresse>Rue perdue 12</Adresse>
+    <Localite>4548 Jalhay</Localite>
+    <ListeChrono>
+      <Chronometre>
+        <NumLicence>PBE0000005</NumLicence>
+        <NumCircuit>TBE00001</NumCircuit>
+        <DateChrono>2020-05-05T00:00:00</DateChrono>
+        <ConditionClimatique>Brouillard</ConditionClimatique>
+        <EtatCircuit>Boueux</EtatCircuit>
+        <TempsChrono />
+      </Chronometre>
+    </ListeChrono>
+  </Pilote>
+  <Pilote>
+    <NumLicence>PFR0000008</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Images\Roczen-blue.jpg</Photo>
+    <Nom>Azerty</Nom>
+    <Prenom>Andre</Prenom>
+    <DateNaissance>1994-03-10T00:00:00</DateNaissance>
+    <ListeChrono />
+  </Pilote>
+  <Pilote>
+    <NumLicence>PDE0000009</NumLicence>
+    <Photo>C:\Users\delav\Pictures\Ken-Roczen.jpg</Photo>
+    <Nom>Roczen</Nom>
+    <Prenom>Ken</Prenom>
+    <DateNaissance>1999-12-09T00:00:00</DateNaissance>
+  </Pilote>
 </ArrayOfPilote>
